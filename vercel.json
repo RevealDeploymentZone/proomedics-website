@@ -1,0 +1,11 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/viagra", "destination": "/viagra.html" },
+    { "source": "/cialis", "destination": "/cialis.html" },
+    { "source": "/kamagra", "destination": "/kamagra.html" },
+    { "source": "/sildenafil", "destination": "/sildenafil.html" },
+    { "source": "/levitra", "destination": "/levitra.html" },
+    { "source": "/spedra", "destination": "/spedra.html" }
+  ]
+}

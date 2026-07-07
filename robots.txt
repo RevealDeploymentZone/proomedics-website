@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.proomedics.com/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Block sensitive areas
+Disallow: /admin/
+Disallow: /checkout/
+Disallow: /cart/
+Disallow: /account/
+Disallow: /*.json$
+Disallow: /*?*sort=
+Disallow: /*?*filter=
