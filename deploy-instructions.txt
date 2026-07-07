@@ -1,0 +1,60 @@
+PROOMEDICS WEBSITE - DEPLOYMENT INSTRUCTIONS
+=============================================
+
+GITHUB REPOSITORY SETUP
+-----------------------
+1. Go to: https://github.com/new
+2. Create new repository:
+   - Name: proomedics-website
+   - Description: Proomedics SEO Optimised ED Medications Website
+   - Choose Public or Private
+   - DO NOT initialize with README
+
+3. After creating, run these commands:
+   cd /home/vercel-sandbox/proomedics
+   git remote add origin https://github.com/YOUR_USERNAME/proomedics-website.git
+   git branch -M main
+   git push -u origin main
+
+VERCEL DEPLOYMENT (OPTION 1 - Via GitHub)
+------------------------------------------
+1. Login to Vercel: https://vercel.com/login
+2. Click "Add New Project"
+3. Import your GitHub repository: proomedics-website
+4. Configure:
+   - Framework Preset: Other
+   - Root Directory: ./
+   - Build Command: (leave empty)
+   - Output Directory: ./
+5. Click "Deploy"
+
+VERCEL DEPLOYMENT (OPTION 2 - Via CLI)
+---------------------------------------
+Run in this directory:
+
+vercel login
+vercel --prod
+
+This will:
+- Authenticate with Vercel
+- Deploy your site
+- Give you a live URL
+
+VERCEL CONFIGURATION
+-------------------
+The vercel.json file is already configured with:
+- Clean URL rewrites (removes .html)
+- Proper routing for all pages
+
+AFTER DEPLOYMENT
+----------------
+1. Custom domain setup (if needed)
+2. Add SSL certificate (automatic on Vercel)
+3. Submit sitemap.xml to Google Search Console
+4. Monitor with Google Analytics
+
+YOUR WEBSITE WILL BE LIVE AT:
+- Vercel URL: https://proomedics-website.vercel.app
+- Or your custom domain
+
+ALL FILES READY IN: /home/vercel-sandbox/proomedics/
