@@ -1,0 +1,30 @@
+<svg width="50" height="50" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <g fill="#4A8B8B">
+    <!-- Top circle (head of staff) -->
+    <circle cx="50" cy="22" r="7"/>
+
+    <!-- Vertical staff -->
+    <rect x="47" y="12" width="6" height="56" rx="3"/>
+
+    <!-- Horizontal wings -->
+    <rect x="30" y="40" width="40" height="5" rx="2.5"/>
+
+    <!-- Left snake -->
+    <path d="M 35 45 Q 28 50, 26 58 Q 24 66, 28 72 Q 32 78, 35 82"
+          stroke="#4A8B8B" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <circle cx="28" cy="50" r="2.5"/>
+    <circle cx="25" cy="62" r="2.5"/>
+    <circle cx="30" cy="75" r="2.5"/>
+
+    <!-- Right snake -->
+    <path d="M 65 45 Q 72 50, 74 58 Q 76 66, 72 72 Q 68 78, 65 82"
+          stroke="#4A8B8B" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <circle cx="72" cy="50" r="2.5"/>
+    <circle cx="75" cy="62" r="2.5"/>
+    <circle cx="70" cy="75" r="2.5"/>
+
+    <!-- Bowl/cup at bottom -->
+    <ellipse cx="50" cy="85" rx="12" ry="5"/>
+    <path d="M 38 85 L 38 90 Q 38 95, 43 95 L 57 95 Q 62 95, 62 90 L 62 85" fill="#4A8B8B"/>
+  </g>
+</svg>
