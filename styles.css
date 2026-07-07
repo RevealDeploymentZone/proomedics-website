@@ -55,26 +55,29 @@ header {
 .logo {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
 }
 
 .logo-img {
-    height: 50px;
-    width: auto;
+    height: 40px;
+    width: 40px;
+    flex-shrink: 0;
 }
 
 .logo h1 {
     color: var(--primary-teal);
-    font-size: 2rem;
-    font-weight: 600;
+    font-size: 1.8rem;
+    font-weight: 700;
     letter-spacing: -0.5px;
+    margin: 0;
+    line-height: 1;
 }
 
 .logo a {
     text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
 }
 
 .nav-menu {
