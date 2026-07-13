@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.proomedics.com/sitemap.xml
+Sitemap: https://www.proomedic.com/sitemap.xml
 
 # Crawl-delay for respectful crawling
 Crawl-delay: 1
