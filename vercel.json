@@ -1,21 +1,92 @@
 {
   "rewrites": [
-    { "source": "/", "destination": "/index.html" },
-    { "source": "/viagra", "destination": "/viagra.html" },
-    { "source": "/cialis", "destination": "/cialis.html" },
-    { "source": "/kamagra", "destination": "/kamagra.html" },
-    { "source": "/sildenafil", "destination": "/sildenafil.html" },
-    { "source": "/levitra", "destination": "/levitra.html" },
-    { "source": "/spedra", "destination": "/spedra.html" },
-    { "source": "/about", "destination": "/about.html" },
-    { "source": "/contact", "destination": "/contact.html" },
-    { "source": "/faq", "destination": "/faq.html" },
-    { "source": "/how-to-order", "destination": "/how-to-order.html" },
-    { "source": "/shipping", "destination": "/shipping.html" },
-    { "source": "/privacy", "destination": "/privacy.html" },
-    { "source": "/terms", "destination": "/terms.html" },
-    { "source": "/consultation", "destination": "/consultation.html" },
-    { "source": "/track-order", "destination": "/track-order.html" },
-    { "source": "/returns", "destination": "/returns.html" }
+    {
+      "source": "/",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/viagra",
+      "destination": "/viagra.html"
+    },
+    {
+      "source": "/cialis",
+      "destination": "/cialis.html"
+    },
+    {
+      "source": "/kamagra",
+      "destination": "/kamagra.html"
+    },
+    {
+      "source": "/sildenafil",
+      "destination": "/sildenafil.html"
+    },
+    {
+      "source": "/levitra",
+      "destination": "/levitra.html"
+    },
+    {
+      "source": "/spedra",
+      "destination": "/spedra.html"
+    },
+    {
+      "source": "/about",
+      "destination": "/about.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/contact.html"
+    },
+    {
+      "source": "/faq",
+      "destination": "/faq.html"
+    },
+    {
+      "source": "/how-to-order",
+      "destination": "/how-to-order.html"
+    },
+    {
+      "source": "/shipping",
+      "destination": "/shipping.html"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/privacy.html"
+    },
+    {
+      "source": "/terms",
+      "destination": "/terms.html"
+    },
+    {
+      "source": "/consultation",
+      "destination": "/consultation.html"
+    },
+    {
+      "source": "/track-order",
+      "destination": "/track-order.html"
+    },
+    {
+      "source": "/returns",
+      "destination": "/returns.html"
+    },
+    {
+      "source": "/blog/cialis-vs-viagra",
+      "destination": "/blog/cialis-vs-viagra.html"
+    },
+    {
+      "source": "/blog/how-long-does-viagra-last",
+      "destination": "/blog/how-long-does-viagra-last.html"
+    },
+    {
+      "source": "/blog/generic-sildenafil-vs-brand-viagra",
+      "destination": "/blog/generic-sildenafil-vs-brand-viagra.html"
+    },
+    {
+      "source": "/blog/erectile-dysfunction-young-men",
+      "destination": "/blog/erectile-dysfunction-young-men.html"
+    },
+    {
+      "source": "/blog/kamagra-oral-jelly-guide",
+      "destination": "/blog/kamagra-oral-jelly-guide.html"
+    }
   ]
 }
