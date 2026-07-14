@@ -286,6 +286,24 @@
             btn.setAttribute('aria-expanded', menu.classList.contains('active'));
         });
     }
+    // Dropdown toggle on mobile
+    document.querySelectorAll('.dropdown-toggle').forEach(function(toggle) {
+        toggle.addEventListener('click', function(e) {
+            if (window.innerWidth <= 968) {
+                e.preventDefault();
+                var parent = this.closest('.dropdown');
+                parent.classList.toggle('active');
+            }
+        });
+    });
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.dropdown')) {
+            document.querySelectorAll('.dropdown').forEach(function(d) {
+                d.classList.remove('active');
+            });
+        }
+    });
     </script>
 </body>
 </html>

@@ -56,9 +56,17 @@
                 </button>
                 <ul class="nav-menu">
                     <li><a href="/">Home</a></li>
-                    <li><a href="/PRODUCTS/viagra">Viagra</a></li>
-                    <li><a href="/PRODUCTS/cialis">Cialis</a></li>
-                    <li><a href="/PRODUCTS/kamagra">Kamagra</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" aria-haspopup="true">Medicines <span class="dropdown-arrow">&#9660;</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/PRODUCTS/viagra">Viagra</a></li>
+                            <li><a href="/PRODUCTS/cialis">Cialis</a></li>
+                            <li><a href="/PRODUCTS/kamagra">Kamagra</a></li>
+                            <li><a href="/PRODUCTS/sildenafil">Sildenafil</a></li>
+                            <li><a href="/PRODUCTS/levitra">Levitra</a></li>
+                            <li><a href="/PRODUCTS/spedra">Spedra</a></li>
+                        </ul>
+                    </li>
                     <li><a href="/blog">Blog</a></li>
                     <li><a href="/about">About</a></li>
                     <li><a href="/contact">Contact</a></li>
@@ -214,6 +222,24 @@
             btn.setAttribute('aria-expanded', menu.classList.contains('active'));
         });
     }
+    // Dropdown toggle on mobile
+    document.querySelectorAll('.dropdown-toggle').forEach(function(toggle) {
+        toggle.addEventListener('click', function(e) {
+            if (window.innerWidth <= 968) {
+                e.preventDefault();
+                var parent = this.closest('.dropdown');
+                parent.classList.toggle('active');
+            }
+        });
+    });
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.dropdown')) {
+            document.querySelectorAll('.dropdown').forEach(function(d) {
+                d.classList.remove('active');
+            });
+        }
+    });
     </script>
 </body>
 </html>
