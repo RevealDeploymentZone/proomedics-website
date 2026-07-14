@@ -7,7 +7,8 @@
     <meta name="description" content="Promedic Privacy Policy. Learn how we protect your personal information, medical data, and ensure your privacy when ordering ED medications online.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.proomedic.com/privacy">
-        <link rel="icon" href="/images/logo.webp" type="image/webp">
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/images/logo.webp" type="image/webp">
     <link rel="apple-touch-icon" href="/images/logo.webp">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -21,7 +22,10 @@
                         <h1>Promedic</h1>
                     </a>
                 </div>
-                                <ul class="nav-menu">
+                                <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+                <ul class="nav-menu">
                     <li><a href="/">Home</a></li>
                     <li><a href="/viagra">Viagra</a></li>
                     <li><a href="/cialis">Cialis</a></li>
@@ -219,5 +223,16 @@
             <p class="copyright">&copy; 2026 Promedic. All rights reserved. Licensed US Pharmacy. The content on this website is for informational purposes only. Consult your healthcare provider before starting any medication.</p>
         </div>
     </footer>
+    <script>
+    var btn = document.getElementById('hamburger');
+    var menu = document.querySelector('.nav-menu');
+    if (btn && menu) {
+        btn.addEventListener('click', function() {
+            btn.classList.toggle('active');
+            menu.classList.toggle('active');
+            btn.setAttribute('aria-expanded', menu.classList.contains('active'));
+        });
+    }
+    </script>
 </body>
 </html>
