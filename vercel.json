@@ -9,27 +9,27 @@
       "destination": "/index.html"
     },
     {
-      "source": "/viagra",
+      "source": "/products/viagra",
       "destination": "/viagra.html"
     },
     {
-      "source": "/cialis",
+      "source": "/products/cialis",
       "destination": "/cialis.html"
     },
     {
-      "source": "/kamagra",
+      "source": "/products/kamagra",
       "destination": "/kamagra.html"
     },
     {
-      "source": "/sildenafil",
+      "source": "/products/sildenafil",
       "destination": "/sildenafil.html"
     },
     {
-      "source": "/levitra",
+      "source": "/products/levitra",
       "destination": "/levitra.html"
     },
     {
-      "source": "/spedra",
+      "source": "/products/spedra",
       "destination": "/spedra.html"
     },
     {
@@ -110,6 +110,38 @@
           "value": "SAMEORIGIN"
         }
       ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/viagra",
+      "destination": "/products/viagra",
+      "permanent": true
+    },
+    {
+      "source": "/cialis",
+      "destination": "/products/cialis",
+      "permanent": true
+    },
+    {
+      "source": "/sildenafil",
+      "destination": "/products/sildenafil",
+      "permanent": true
+    },
+    {
+      "source": "/kamagra",
+      "destination": "/products/kamagra",
+      "permanent": true
+    },
+    {
+      "source": "/levitra",
+      "destination": "/products/levitra",
+      "permanent": true
+    },
+    {
+      "source": "/spedra",
+      "destination": "/products/spedra",
+      "permanent": true
     }
   ]
 }
