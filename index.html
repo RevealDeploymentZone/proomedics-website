@@ -115,7 +115,22 @@
                                     <input type="tel" name="phone" placeholder="Phone Number (optional)">
                                 </div>
                                 <div class="hcf-group">
-                                    <textarea name="message" placeholder="Your Message *" rows="3" required></textarea>
+                                    <select name="medication" class="hcf-select" onchange="toggleOtherMed(this)" required>
+                                        <option value="" disabled selected>Select Medication *</option>
+                                        <option value="Viagra (Sildenafil)">Viagra (Sildenafil)</option>
+                                        <option value="Cialis (Tadalafil)">Cialis (Tadalafil)</option>
+                                        <option value="Kamagra">Kamagra</option>
+                                        <option value="Sildenafil (Generic)">Sildenafil (Generic)</option>
+                                        <option value="Levitra (Vardenafil)">Levitra (Vardenafil)</option>
+                                        <option value="Spedra (Avanafil)">Spedra (Avanafil)</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="hcf-group" id="other-med-group" style="display:none;">
+                                    <textarea name="other_medication" id="other-med-desc" placeholder="Please describe the medication you are looking for *" rows="2"></textarea>
+                                </div>
+                                <div class="hcf-group">
+                                    <textarea name="message" placeholder="Your Message *" rows="2" required></textarea>
                                 </div>
                                 <button type="submit" class="hcf-btn">Send Message ➤</button>
                             </form>
@@ -344,6 +359,17 @@
         </div>
     </footer>
     <script>
+    function toggleOtherMed(sel) {
+        var group = document.getElementById('other-med-group');
+        var textarea = document.getElementById('other-med-desc');
+        if (sel.value === 'Other') {
+            group.style.display = 'block';
+            textarea.setAttribute('required', 'required');
+        } else {
+            group.style.display = 'none';
+            textarea.removeAttribute('required');
+        }
+    }
     var btn = document.getElementById('hamburger');
     var menu = document.querySelector('.nav-menu');
     if (btn && menu) {
@@ -374,4 +400,5 @@
     </script>
 </body>
 </html>
+
 
