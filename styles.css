@@ -840,3 +840,126 @@ a:focus, button:focus {
 .social-links {
     color: rgba(255, 255, 255, 0.7);
 }
+
+
+/* ===== Hero Contact Form ===== */
+.hero-layout {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    text-align: left;
+}
+
+.hero-text {
+    flex: 1;
+}
+
+.hero-text h2 {
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    letter-spacing: -0.5px;
+}
+
+.hero-text p {
+    font-size: 1.15rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    line-height: 1.6;
+}
+
+.hero-form-wrapper {
+    flex: 0 0 380px;
+}
+
+.hero-contact-card {
+    background: rgba(255, 255, 255, 0.97);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    color: var(--text-dark);
+}
+
+.hero-contact-card h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--dark-teal);
+    margin-bottom: 0.5rem;
+}
+
+.hero-contact-card > p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 1.2rem;
+    opacity: 1;
+    text-shadow: none;
+}
+
+.hcf-group {
+    margin-bottom: 0.85rem;
+}
+
+.hcf-group input,
+.hcf-group textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    background: #fff;
+    transition: border-color 0.2s ease;
+    box-sizing: border-box;
+    font-family: inherit;
+    outline: none;
+}
+
+.hcf-group input:focus,
+.hcf-group textarea:focus {
+    border-color: var(--primary-teal);
+    box-shadow: 0 0 0 3px rgba(74, 139, 139, 0.15);
+}
+
+.hcf-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.hcf-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, var(--primary-teal), var(--dark-teal));
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+    font-family: inherit;
+}
+
+.hcf-btn:hover {
+    background: linear-gradient(135deg, var(--dark-teal), #1e4f4f);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+@media (max-width: 968px) {
+    .hero-layout {
+        flex-direction: column;
+        text-align: center;
+    }
+    .hero-text h2 {
+        font-size: 2rem;
+    }
+    .hero-form-wrapper {
+        flex: none;
+        width: 100%;
+        max-width: 480px;
+    }
+}
