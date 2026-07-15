@@ -150,9 +150,13 @@ header {
 
 .hero-sub {
     font-size: 1.2rem;
-    margin-bottom: 2rem !important;
+    margin-bottom: 2rem;
     opacity: 0.92;
     font-weight: 400;
+    color: rgba(255,255,255,0.95);
+    line-height: 1.5;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    max-width: 560px;
 }
 
 .hero p {
@@ -507,7 +511,7 @@ header {
     margin-bottom: 2rem;
 }
 
-.dosage-options h3 {
+.dosage-options h2, .dosage-options h3 {
     color: var(--dark-teal);
     font-size: 1.3rem;
     margin-bottom: 1rem;
@@ -1160,3 +1164,46 @@ a:focus, button:focus {
     }
 }
 
+
+
+/* Key Benefits heading — product pages */
+.key-benefits-title {
+    color: var(--primary-teal);
+    margin-bottom: 0.8rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+/* Product CTA section */
+.product-cta-section {
+    padding: 3.5rem 0;
+    background: linear-gradient(135deg, var(--dark-teal) 0%, var(--primary-teal) 100%);
+    color: white;
+    text-align: center;
+}
+
+.product-cta-section h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.product-cta-section p {
+    font-size: 1rem;
+    opacity: 0.92;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+.product-cta-section .btn-primary {
+    background: white;
+    color: var(--dark-teal);
+    display: inline-block;
+    margin-top: 1.5rem;
+}
+
+.product-cta-section .btn-primary:hover {
+    background: var(--light-teal);
+}
