@@ -601,22 +601,33 @@
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>OTC Medicines</h4>
+                    <h4>Pain Relief</h4>
                     <ul>
                         <li><a href="/PRODUCTS/ibuprofen-200mg">Ibuprofen 200mg</a></li>
                         <li><a href="/PRODUCTS/acetaminophen-500mg">Acetaminophen 500mg</a></li>
                         <li><a href="/PRODUCTS/naproxen-220mg">Naproxen 220mg</a></li>
                         <li><a href="/PRODUCTS/aspirin-325mg">Aspirin 325mg</a></li>
-                        <li><a href="/PRODUCTS/omeprazole-20mg">Omeprazole 20mg</a></li>
+                    </ul>
+                    <h4 style="margin-top: 1.5rem;">Allergy & Cold</h4>
+                    <ul>
                         <li><a href="/PRODUCTS/loratadine-10mg">Loratadine 10mg</a></li>
                         <li><a href="/PRODUCTS/cetirizine-10mg">Cetirizine 10mg</a></li>
                         <li><a href="/PRODUCTS/diphenhydramine-25mg">Diphenhydramine 25mg</a></li>
                         <li><a href="/PRODUCTS/mucinex-400mg">Mucinex 400mg</a></li>
-                        <li><a href="/PRODUCTS/nyquil-cold-flu">NyQuil Cold & Flu</a></li>
-                        <li><a href="/PRODUCTS/dayquil-liquicaps">DayQuil Liquicaps</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Digestive Health</h4>
+                    <ul>
+                        <li><a href="/PRODUCTS/omeprazole-20mg">Omeprazole 20mg</a></li>
                         <li><a href="/PRODUCTS/loperamide-2mg">Loperamide 2mg</a></li>
                         <li><a href="/PRODUCTS/miralax-laxative">MiraLax Laxative</a></li>
                         <li><a href="/PRODUCTS/meclizine-25mg">Meclizine 25mg</a></li>
+                    </ul>
+                    <h4 style="margin-top: 1.5rem;">Cold & Flu</h4>
+                    <ul>
+                        <li><a href="/PRODUCTS/nyquil-cold-flu">NyQuil Cold & Flu</a></li>
+                        <li><a href="/PRODUCTS/dayquil-liquicaps">DayQuil Liquicaps</a></li>
                         <li><a href="/PRODUCTS/phenylephrine-10mg">Phenylephrine 10mg</a></li>
                     </ul>
                 </div>
@@ -669,14 +680,19 @@
             btn.setAttribute('aria-expanded', menu.classList.contains('active'));
         });
     }
-    // Dropdown toggle on mobile
+    // Dropdown toggle for mobile and desktop
     document.querySelectorAll('.dropdown-toggle').forEach(function(toggle) {
         toggle.addEventListener('click', function(e) {
-            if (window.innerWidth <= 968) {
-                e.preventDefault();
-                var parent = this.closest('.dropdown');
-                parent.classList.toggle('active');
-            }
+            e.preventDefault();
+            var parent = this.closest('.dropdown');
+            // Close other dropdowns first
+            document.querySelectorAll('.dropdown').forEach(function(d) {
+                if (d !== parent) {
+                    d.classList.remove('active');
+                }
+            });
+            // Toggle current dropdown
+            parent.classList.toggle('active');
         });
     });
     // Close dropdown when clicking outside
