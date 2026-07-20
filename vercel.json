@@ -139,6 +139,66 @@
     {
       "source": "/blog/viagra-empty-stomach-timing",
       "destination": "/blog/viagra-empty-stomach-timing.html"
+    },
+    {
+      "source": "/PRODUCTS/ibuprofen-200mg",
+      "destination": "/ibuprofen-200mg.html"
+    },
+    {
+      "source": "/PRODUCTS/acetaminophen-500mg",
+      "destination": "/acetaminophen-500mg.html"
+    },
+    {
+      "source": "/PRODUCTS/naproxen-220mg",
+      "destination": "/naproxen-220mg.html"
+    },
+    {
+      "source": "/PRODUCTS/aspirin-325mg",
+      "destination": "/aspirin-325mg.html"
+    },
+    {
+      "source": "/PRODUCTS/omeprazole-20mg",
+      "destination": "/omeprazole-20mg.html"
+    },
+    {
+      "source": "/PRODUCTS/loratadine-10mg",
+      "destination": "/loratadine-10mg.html"
+    },
+    {
+      "source": "/PRODUCTS/cetirizine-10mg",
+      "destination": "/cetirizine-10mg.html"
+    },
+    {
+      "source": "/PRODUCTS/diphenhydramine-25mg",
+      "destination": "/diphenhydramine-25mg.html"
+    },
+    {
+      "source": "/PRODUCTS/mucinex-400mg",
+      "destination": "/mucinex-400mg.html"
+    },
+    {
+      "source": "/PRODUCTS/nyquil-cold-flu",
+      "destination": "/nyquil-cold-flu.html"
+    },
+    {
+      "source": "/PRODUCTS/dayquil-liquicaps",
+      "destination": "/dayquil-liquicaps.html"
+    },
+    {
+      "source": "/PRODUCTS/loperamide-2mg",
+      "destination": "/loperamide-2mg.html"
+    },
+    {
+      "source": "/PRODUCTS/miralax-laxative",
+      "destination": "/miralax-laxative.html"
+    },
+    {
+      "source": "/PRODUCTS/meclizine-25mg",
+      "destination": "/meclizine-25mg.html"
+    },
+    {
+      "source": "/PRODUCTS/phenylephrine-10mg",
+      "destination": "/phenylephrine-10mg.html"
     }
   ],
   "headers": [
@@ -189,6 +249,81 @@
     {
       "source": "/spedra",
       "destination": "/PRODUCTS/spedra",
+      "permanent": true
+    },
+    {
+      "source": "/ibuprofen-200mg",
+      "destination": "/PRODUCTS/ibuprofen-200mg",
+      "permanent": true
+    },
+    {
+      "source": "/acetaminophen-500mg",
+      "destination": "/PRODUCTS/acetaminophen-500mg",
+      "permanent": true
+    },
+    {
+      "source": "/naproxen-220mg",
+      "destination": "/PRODUCTS/naproxen-220mg",
+      "permanent": true
+    },
+    {
+      "source": "/aspirin-325mg",
+      "destination": "/PRODUCTS/aspirin-325mg",
+      "permanent": true
+    },
+    {
+      "source": "/omeprazole-20mg",
+      "destination": "/PRODUCTS/omeprazole-20mg",
+      "permanent": true
+    },
+    {
+      "source": "/loratadine-10mg",
+      "destination": "/PRODUCTS/loratadine-10mg",
+      "permanent": true
+    },
+    {
+      "source": "/cetirizine-10mg",
+      "destination": "/PRODUCTS/cetirizine-10mg",
+      "permanent": true
+    },
+    {
+      "source": "/diphenhydramine-25mg",
+      "destination": "/PRODUCTS/diphenhydramine-25mg",
+      "permanent": true
+    },
+    {
+      "source": "/mucinex-400mg",
+      "destination": "/PRODUCTS/mucinex-400mg",
+      "permanent": true
+    },
+    {
+      "source": "/nyquil-cold-flu",
+      "destination": "/PRODUCTS/nyquil-cold-flu",
+      "permanent": true
+    },
+    {
+      "source": "/dayquil-liquicaps",
+      "destination": "/PRODUCTS/dayquil-liquicaps",
+      "permanent": true
+    },
+    {
+      "source": "/loperamide-2mg",
+      "destination": "/PRODUCTS/loperamide-2mg",
+      "permanent": true
+    },
+    {
+      "source": "/miralax-laxative",
+      "destination": "/PRODUCTS/miralax-laxative",
+      "permanent": true
+    },
+    {
+      "source": "/meclizine-25mg",
+      "destination": "/PRODUCTS/meclizine-25mg",
+      "permanent": true
+    },
+    {
+      "source": "/phenylephrine-10mg",
+      "destination": "/PRODUCTS/phenylephrine-10mg",
       "permanent": true
     }
   ]
