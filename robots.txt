@@ -11,6 +11,3 @@ Disallow: /admin/
 Disallow: /checkout/
 Disallow: /cart/
 Disallow: /account/
-Disallow: /*.json$
-Disallow: /*?*sort=
-Disallow: /*?*filter=
