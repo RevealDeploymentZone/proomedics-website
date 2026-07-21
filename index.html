@@ -276,21 +276,18 @@
                         <div class="hero-contact-card">
                             <h3>📩 Contact Us</h3>
                             <p>Have a question? Send us a message and we'll get back to you shortly.</p>
-                            <form action="https://formsubmit.co/promedic.rx@gmail.com" method="POST">
-                                <input type="hidden" name="_subject" value="New Enquiry - Promedic Website">
-                                <input type="hidden" name="_captcha" value="false">
-                                <input type="hidden" name="_next" value="https://www.proomedic.com/?sent=true">
+                            <form id="hero-contact-form">
                                 <div class="hcf-group">
-                                    <input type="text" name="name" placeholder="Your Name *" required>
+                                    <input type="text" name="name" id="hcf-name" placeholder="Your Name *" required>
                                 </div>
                                 <div class="hcf-group">
-                                    <input type="email" name="email" placeholder="Your Email *" required>
+                                    <input type="email" name="email" id="hcf-email" placeholder="Your Email *" required>
                                 </div>
                                 <div class="hcf-group">
-                                    <input type="tel" name="phone" placeholder="Phone Number (optional)">
+                                    <input type="tel" name="phone" id="hcf-phone" placeholder="Phone Number (optional)">
                                 </div>
                                 <div class="hcf-group">
-                                    <select name="medication" class="hcf-select" onchange="toggleOtherMed(this)" required>
+                                    <select name="medication" id="hcf-medication" class="hcf-select" onchange="toggleOtherMed(this)" required>
                                         <option value="" disabled selected>Select Medication *</option>
                                         <option value="Viagra (Sildenafil)">Viagra (Sildenafil)</option>
                                         <option value="Cialis (Tadalafil)">Cialis (Tadalafil)</option>
@@ -305,9 +302,10 @@
                                     <textarea name="other_medication" id="other-med-desc" placeholder="Please describe the medication you are looking for *" rows="2"></textarea>
                                 </div>
                                 <div class="hcf-group">
-                                    <textarea name="message" placeholder="Your Message *" rows="2" required></textarea>
+                                    <textarea name="message" id="hcf-message" placeholder="Your Message *" rows="2" required></textarea>
                                 </div>
-                                <button type="submit" class="hcf-btn">Send Message ➤</button>
+                                <div id="hcf-status" style="display:none; padding: 10px; border-radius: 6px; margin-bottom: 10px; font-size: 14px; text-align: center;"></div>
+                                <button type="submit" class="hcf-btn" id="hcf-submit">Send Message ➤</button>
                             </form>
                         </div>
                     </div>
@@ -828,6 +826,58 @@
             group.style.display = 'none';
             textarea.removeAttribute('required');
         }
+    }
+
+    // Contact form — send via Resend API
+    var contactForm = document.getElementById('hero-contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            var submitBtn = document.getElementById('hcf-submit');
+            var statusDiv = document.getElementById('hcf-status');
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            statusDiv.style.display = 'none';
+
+            var payload = {
+                name: document.getElementById('hcf-name').value.trim(),
+                email: document.getElementById('hcf-email').value.trim(),
+                phone: document.getElementById('hcf-phone').value.trim(),
+                medication: document.getElementById('hcf-medication').value,
+                other_medication: document.getElementById('other-med-desc').value.trim(),
+                message: document.getElementById('hcf-message').value.trim()
+            };
+
+            try {
+                var res = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                var data = await res.json();
+
+                if (res.ok && data.success) {
+                    statusDiv.style.background = '#e8f5e9';
+                    statusDiv.style.color = '#2e7d32';
+                    statusDiv.style.border = '1px solid #a5d6a7';
+                    statusDiv.textContent = 'Message sent! We will get back to you shortly.';
+                    contactForm.reset();
+                    document.getElementById('other-med-group').style.display = 'none';
+                } else {
+                    throw new Error(data.error || 'Failed to send');
+                }
+            } catch (err) {
+                statusDiv.style.background = '#fdecea';
+                statusDiv.style.color = '#c62828';
+                statusDiv.style.border = '1px solid #ef9a9a';
+                statusDiv.textContent = 'Something went wrong. Please email us at promedic.rx@gmail.com';
+            }
+
+            statusDiv.style.display = 'block';
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Send Message \u27a4';
+        });
     }
     var btn = document.getElementById('hamburger');
     var menu = document.querySelector('.nav-menu');
