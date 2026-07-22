@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title>Secure Checkout | Promedic</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <a href="/">
+                        <img src="/images/logo.webp" alt="Promedic Logo" class="logo-img">
+                        <span class="logo-text">Promedic</span>
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="/">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" aria-haspopup="true">ED Medicines <span class="dropdown-arrow">&#9660;</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/PRODUCTS/viagra">Viagra</a></li>
+                            <li><a href="/PRODUCTS/cialis">Cialis</a></li>
+                            <li><a href="/PRODUCTS/kamagra">Kamagra</a></li>
+                            <li><a href="/PRODUCTS/sildenafil">Sildenafil</a></li>
+                            <li><a href="/PRODUCTS/levitra">Levitra</a></li>
+                            <li><a href="/PRODUCTS/spedra">Spedra</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="checkout-page">
+            <div class="container">
+                <div class="checkout-header">
+                    <h2>Secure Checkout</h2>
+                    <p>Complete your order below. All transactions are SSL encrypted.</p>
+                </div>
+
+                <div id="checkout-empty" class="checkout-empty" style="display:none;">
+                    <p>Your cart is empty. <a href="/">Browse our products</a> to add items.</p>
+                </div>
+
+                <div class="checkout-layout" id="checkout-layout">
+                    <!-- LEFT: Form -->
+                    <div class="checkout-form-col">
+
+                        <!-- Step 1: Order Form -->
+                        <div id="checkout-step-form">
+                            <div class="checkout-section">
+                                <h3>Contact Information</h3>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="co-fname">First Name *</label>
+                                        <input type="text" id="co-fname" placeholder="John" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="co-lname">Last Name *</label>
+                                        <input type="text" id="co-lname" placeholder="Doe" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="co-email">Email *</label>
+                                        <input type="email" id="co-email" placeholder="john@example.com" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="co-phone">Phone Number *</label>
+                                        <input type="tel" id="co-phone" placeholder="+1 (555) 000-0000" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="checkout-section">
+                                <h3>Shipping Address</h3>
+                                <div class="form-group">
+                                    <label for="co-address">Street Address *</label>
+                                    <input type="text" id="co-address" placeholder="123 Main St, Apt 4B" required>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="co-city">City *</label>
+                                        <input type="text" id="co-city" placeholder="Miami" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="co-state">State *</label>
+                                        <select id="co-state" required>
+                                            <option value="" disabled selected>Select state...</option>
+                                            <option>AL</option><option>AK</option><option>AZ</option><option>AR</option>
+                                            <option>CA</option><option>CO</option><option>CT</option><option>DE</option>
+                                            <option>FL</option><option>GA</option><option>HI</option><option>ID</option>
+                                            <option>IL</option><option>IN</option><option>IA</option><option>KS</option>
+                                            <option>KY</option><option>LA</option><option>ME</option><option>MD</option>
+                                            <option>MA</option><option>MI</option><option>MN</option><option>MS</option>
+                                            <option>MO</option><option>MT</option><option>NE</option><option>NV</option>
+                                            <option>NH</option><option>NJ</option><option>NM</option><option>NY</option>
+                                            <option>NC</option><option>ND</option><option>OH</option><option>OK</option>
+                                            <option>OR</option><option>PA</option><option>RI</option><option>SC</option>
+                                            <option>SD</option><option>TN</option><option>TX</option><option>UT</option>
+                                            <option>VT</option><option>VA</option><option>WA</option><option>WV</option>
+                                            <option>WI</option><option>WY</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="co-zip">ZIP Code *</label>
+                                        <input type="text" id="co-zip" placeholder="33101" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="co-country">Country</label>
+                                        <input type="text" id="co-country" value="United States" readonly class="input-readonly">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="checkout-section">
+                                <h3>Payment Method *</h3>
+                                <div class="payment-grid">
+                                    <label class="payment-option">
+                                        <input type="radio" name="payment" value="Credit / Debit Card" checked>
+                                        <span class="payment-label">
+                                            <span class="payment-icon">&#128179;</span>
+                                            Credit / Debit Card
+                                        </span>
+                                    </label>
+                                    <label class="payment-option">
+                                        <input type="radio" name="payment" value="PayPal">
+                                        <span class="payment-label">
+                                            <span class="payment-icon">&#128179;</span>
+                                            PayPal
+                                        </span>
+                                    </label>
+                                    <label class="payment-option">
+                                        <input type="radio" name="payment" value="Zelle">
+                                        <span class="payment-label">
+                                            <span class="payment-icon">&#9889;</span>
+                                            Zelle
+                                        </span>
+                                    </label>
+                                    <label class="payment-option">
+                                        <input type="radio" name="payment" value="Cash App">
+                                        <span class="payment-label">
+                                            <span class="payment-icon">&#36;</span>
+                                            Cash App
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="checkout-section">
+                                <label for="co-notes" class="section-label">Order Notes <span class="optional">(optional)</span></label>
+                                <textarea id="co-notes" rows="3" placeholder="Special instructions, prescription details, delivery preferences..."></textarea>
+                            </div>
+
+                            <div id="co-status" class="co-status" style="display:none;"></div>
+
+                            <button id="place-order-btn" class="place-order-btn">
+                                Place Order &mdash; <span id="place-order-total">$0.00</span>
+                            </button>
+
+                            <div class="checkout-trust-bar">
+                                <span>&#128274; SSL Encrypted</span>
+                                <span>&bull;</span>
+                                <span>Your data is safe</span>
+                                <span>&bull;</span>
+                                <span>FDA Compliant Pharmacy</span>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: OTP Verification -->
+                        <div id="checkout-step-otp" style="display:none;">
+                            <div class="checkout-section otp-section">
+                                <div class="otp-icon">&#128274;</div>
+                                <h3>Verify Your Order</h3>
+                                <p class="otp-desc">We've sent a 6-digit verification code to our pharmacy team. Please enter it below to confirm your order.</p>
+
+                                <div class="form-group">
+                                    <label for="co-otp">Verification Code *</label>
+                                    <input type="text" id="co-otp" placeholder="Enter 6-digit code" maxlength="6" inputmode="numeric" pattern="[0-9]*" class="otp-input">
+                                </div>
+
+                                <div id="otp-status" class="co-status" style="display:none;"></div>
+
+                                <button id="verify-otp-btn" class="place-order-btn">
+                                    Confirm Order
+                                </button>
+
+                                <div class="otp-resend">
+                                    Didn't receive it?
+                                    <button id="resend-otp-btn" class="resend-btn">Resend Code</button>
+                                    <span id="resend-timer" class="resend-timer"></span>
+                                </div>
+
+                                <button id="back-to-form-btn" class="back-btn">&#8592; Back to order details</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Order Confirmed -->
+                        <div id="checkout-step-success" style="display:none;">
+                            <div class="checkout-section success-section">
+                                <div class="success-icon">&#10003;</div>
+                                <h3>Order Placed Successfully!</h3>
+                                <p>Thank you for your order. Our pharmacy team will contact you at <strong id="confirm-email"></strong> to confirm payment and shipping details.</p>
+                                <p>Order reference: <strong id="confirm-ref"></strong></p>
+                                <a href="/" class="place-order-btn" style="display:inline-block; text-align:center; text-decoration:none; margin-top:1rem;">Continue Shopping</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- RIGHT: Order Summary -->
+                    <div class="order-summary-col">
+                        <div class="order-summary-card">
+                            <h3>Order Summary</h3>
+                            <div id="summary-items" class="summary-items"></div>
+                            <div class="summary-line">
+                                <span>Subtotal</span>
+                                <span id="summary-subtotal">$0.00</span>
+                            </div>
+                            <div class="summary-line">
+                                <span>Shipping</span>
+                                <span id="summary-shipping">$7.99</span>
+                            </div>
+                            <div class="summary-line summary-total-line">
+                                <span>Total</span>
+                                <span id="summary-total">$0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p class="copyright">&copy; 2026 Promedic. All rights reserved. Licensed US Pharmacy.</p>
+        </div>
+    </footer>
+
+    <script src="/cart.js"></script>
+    <script>
+    (function () {
+        var SHIPPING = 7.99;
+        var orderToken = null;
+        var orderData = null;
+        var resendTimer = null;
+        var resendSeconds = 0;
+
+        function getCart() {
+            try { return JSON.parse(localStorage.getItem('promedic_cart') || '[]'); }
+            catch (e) { return []; }
+        }
+        function cartSubtotal(cart) {
+            return cart.reduce(function (s, i) { return s + i.price * i.qty; }, 0);
+        }
+
+        function renderSummary() {
+            var cart = getCart();
+            var subtotal = cartSubtotal(cart);
+            var shipping = cart.length > 0 ? SHIPPING : 0;
+            var total = subtotal + shipping;
+
+            var itemsEl = document.getElementById('summary-items');
+            if (itemsEl) {
+                if (cart.length === 0) {
+                    itemsEl.innerHTML = '<p class="cart-empty" style="padding:0.5rem 0;">No items in cart.</p>';
+                } else {
+                    itemsEl.innerHTML = cart.map(function (item) {
+                        return '<div class="summary-item">' +
+                            '<img src="' + item.image + '" alt="' + item.name + '" class="summary-item-img" onerror="this.style.display=\'none\'">' +
+                            '<div class="summary-item-info">' +
+                                '<span class="summary-item-name">' + item.name + '</span>' +
+                                '<span class="summary-item-qty">Qty: ' + item.qty + '</span>' +
+                            '</div>' +
+                            '<span class="summary-item-price">$' + (item.price * item.qty).toFixed(2) + '</span>' +
+                        '</div>';
+                    }).join('');
+                }
+            }
+
+            var subtotalEl = document.getElementById('summary-subtotal');
+            var shippingEl = document.getElementById('summary-shipping');
+            var totalEl = document.getElementById('summary-total');
+            var placeTotal = document.getElementById('place-order-total');
+            if (subtotalEl) subtotalEl.textContent = '$' + subtotal.toFixed(2);
+            if (shippingEl) shippingEl.textContent = cart.length > 0 ? '$' + SHIPPING.toFixed(2) : '$0.00';
+            if (totalEl) totalEl.textContent = '$' + total.toFixed(2);
+            if (placeTotal) placeTotal.textContent = '$' + total.toFixed(2);
+        }
+
+        function showStatus(el, msg, type) {
+            if (!el) return;
+            el.textContent = msg;
+            el.className = 'co-status co-status-' + type;
+            el.style.display = 'block';
+        }
+        function hideStatus(el) {
+            if (el) el.style.display = 'none';
+        }
+
+        function validateForm() {
+            var fields = [
+                { id: 'co-fname', label: 'First Name' },
+                { id: 'co-lname', label: 'Last Name' },
+                { id: 'co-email', label: 'Email' },
+                { id: 'co-phone', label: 'Phone' },
+                { id: 'co-address', label: 'Street Address' },
+                { id: 'co-city', label: 'City' },
+                { id: 'co-state', label: 'State' },
+                { id: 'co-zip', label: 'ZIP Code' }
+            ];
+            for (var i = 0; i < fields.length; i++) {
+                var el = document.getElementById(fields[i].id);
+                if (!el || !el.value.trim()) {
+                    return fields[i].label + ' is required.';
+                }
+            }
+            var email = document.getElementById('co-email').value.trim();
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return 'Please enter a valid email address.';
+            var payment = document.querySelector('input[name="payment"]:checked');
+            if (!payment) return 'Please select a payment method.';
+            return null;
+        }
+
+        function buildOrderData() {
+            var cart = getCart();
+            var payment = document.querySelector('input[name="payment"]:checked');
+            return {
+                firstName: document.getElementById('co-fname').value.trim(),
+                lastName: document.getElementById('co-lname').value.trim(),
+                email: document.getElementById('co-email').value.trim(),
+                phone: document.getElementById('co-phone').value.trim(),
+                address: document.getElementById('co-address').value.trim(),
+                city: document.getElementById('co-city').value.trim(),
+                state: document.getElementById('co-state').value,
+                zip: document.getElementById('co-zip').value.trim(),
+                country: 'United States',
+                payment: payment ? payment.value : '',
+                notes: document.getElementById('co-notes').value.trim(),
+                items: cart,
+                subtotal: cartSubtotal(cart).toFixed(2),
+                shipping: SHIPPING.toFixed(2),
+                total: (cartSubtotal(cart) + SHIPPING).toFixed(2)
+            };
+        }
+
+        async function placeOrder() {
+            var statusEl = document.getElementById('co-status');
+            var btn = document.getElementById('place-order-btn');
+
+            var error = validateForm();
+            if (error) { showStatus(statusEl, error, 'error'); return; }
+
+            var cart = getCart();
+            if (cart.length === 0) { showStatus(statusEl, 'Your cart is empty.', 'error'); return; }
+
+            hideStatus(statusEl);
+            btn.disabled = true;
+            btn.textContent = 'Sending verification code...';
+
+            orderData = buildOrderData();
+
+            try {
+                var res = await fetch('/api/order', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(orderData)
+                });
+                var data = await res.json();
+                if (!res.ok || !data.success) throw new Error(data.error || 'Failed to send code');
+
+                orderToken = data.token;
+                showOtpStep();
+                startResendTimer(60);
+            } catch (err) {
+                showStatus(statusEl, 'Something went wrong. Please try again or email us at promedic.rx@gmail.com', 'error');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = 'Place Order &mdash; <span id="place-order-total">$' + (cartSubtotal(getCart()) + SHIPPING).toFixed(2) + '</span>';
+            }
+        }
+
+        async function verifyOtp() {
+            var otp = document.getElementById('co-otp').value.trim();
+            var statusEl = document.getElementById('otp-status');
+            var btn = document.getElementById('verify-otp-btn');
+
+            if (!otp || otp.length !== 6) { showStatus(statusEl, 'Please enter the 6-digit code.', 'error'); return; }
+            if (!orderToken) { showStatus(statusEl, 'Session expired. Please go back and try again.', 'error'); return; }
+
+            hideStatus(statusEl);
+            btn.disabled = true;
+            btn.textContent = 'Confirming...';
+
+            try {
+                var res = await fetch('/api/verify-otp', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ otp: otp, token: orderToken, orderData: orderData })
+                });
+                var data = await res.json();
+                if (!res.ok || !data.success) throw new Error(data.error || 'Invalid or expired code');
+
+                clearCart();
+                showSuccessStep(data.ref);
+            } catch (err) {
+                showStatus(statusEl, err.message || 'Invalid code. Please try again.', 'error');
+                btn.disabled = false;
+                btn.textContent = 'Confirm Order';
+            }
+        }
+
+        async function resendOtp() {
+            if (!orderData) return;
+            var btn = document.getElementById('resend-otp-btn');
+            btn.disabled = true;
+
+            try {
+                var res = await fetch('/api/order', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(orderData)
+                });
+                var data = await res.json();
+                if (!res.ok || !data.success) throw new Error('Failed');
+                orderToken = data.token;
+                document.getElementById('co-otp').value = '';
+                hideStatus(document.getElementById('otp-status'));
+                startResendTimer(60);
+            } catch (err) {
+                var statusEl = document.getElementById('otp-status');
+                showStatus(statusEl, 'Could not resend code. Please try again.', 'error');
+                btn.disabled = false;
+            }
+        }
+
+        function startResendTimer(seconds) {
+            resendSeconds = seconds;
+            var timerEl = document.getElementById('resend-timer');
+            var resendBtn = document.getElementById('resend-otp-btn');
+            if (resendBtn) resendBtn.disabled = true;
+            if (resendTimer) clearInterval(resendTimer);
+            resendTimer = setInterval(function () {
+                resendSeconds--;
+                if (timerEl) timerEl.textContent = '(' + resendSeconds + 's)';
+                if (resendSeconds <= 0) {
+                    clearInterval(resendTimer);
+                    if (timerEl) timerEl.textContent = '';
+                    if (resendBtn) resendBtn.disabled = false;
+                }
+            }, 1000);
+        }
+
+        function showOtpStep() {
+            document.getElementById('checkout-step-form').style.display = 'none';
+            document.getElementById('checkout-step-otp').style.display = 'block';
+        }
+
+        function showSuccessStep(ref) {
+            document.getElementById('checkout-step-otp').style.display = 'none';
+            document.getElementById('checkout-step-success').style.display = 'block';
+            var emailEl = document.getElementById('confirm-email');
+            var refEl = document.getElementById('confirm-ref');
+            if (emailEl && orderData) emailEl.textContent = orderData.email;
+            if (refEl) refEl.textContent = ref || '#' + Date.now();
+        }
+
+        function clearCart() {
+            localStorage.removeItem('promedic_cart');
+            var badge = document.getElementById('cart-badge');
+            if (badge) { badge.textContent = '0'; badge.style.display = 'none'; }
+        }
+
+        // Init
+        var cart = getCart();
+        if (cart.length === 0) {
+            var layoutEl = document.getElementById('checkout-layout');
+            var emptyEl = document.getElementById('checkout-empty');
+            if (layoutEl) layoutEl.style.display = 'none';
+            if (emptyEl) emptyEl.style.display = 'block';
+        } else {
+            renderSummary();
+        }
+
+        var placeBtn = document.getElementById('place-order-btn');
+        if (placeBtn) placeBtn.addEventListener('click', placeOrder);
+
+        var verifyBtn = document.getElementById('verify-otp-btn');
+        if (verifyBtn) verifyBtn.addEventListener('click', verifyOtp);
+
+        var resendBtn = document.getElementById('resend-otp-btn');
+        if (resendBtn) resendBtn.addEventListener('click', resendOtp);
+
+        var backBtn = document.getElementById('back-to-form-btn');
+        if (backBtn) backBtn.addEventListener('click', function () {
+            document.getElementById('checkout-step-otp').style.display = 'none';
+            document.getElementById('checkout-step-form').style.display = 'block';
+            if (resendTimer) clearInterval(resendTimer);
+        });
+
+        // Dropdown toggle
+        document.querySelectorAll('.dropdown-toggle').forEach(function (toggle) {
+            toggle.addEventListener('click', function (e) {
+                e.preventDefault();
+                var parent = this.closest('.dropdown');
+                document.querySelectorAll('.dropdown').forEach(function (d) {
+                    if (d !== parent) d.classList.remove('active');
+                });
+                parent.classList.toggle('active');
+            });
+        });
+        document.addEventListener('click', function (e) {
+            if (!e.target.closest('.dropdown')) {
+                document.querySelectorAll('.dropdown').forEach(function (d) { d.classList.remove('active'); });
+            }
+        });
+    })();
+    </script>
+</body>
+</html>

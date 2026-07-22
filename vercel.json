@@ -9,6 +9,10 @@
       "destination": "/index.html"
     },
     {
+      "source": "/checkout",
+      "destination": "/checkout.html"
+    },
+    {
       "source": "/PRODUCTS/viagra",
       "destination": "/viagra.html"
     },
