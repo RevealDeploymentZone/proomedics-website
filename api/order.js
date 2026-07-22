@@ -1,21 +1,9 @@
-import crypto from 'crypto';
-
-function generateOtp() {
-  return String(Math.floor(100000 + Math.random() * 900000));
-}
-
-function signToken(otp, secret) {
-  const timestamp = Date.now();
-  const hmac = crypto.createHmac('sha256', secret).update(otp + ':' + timestamp).digest('hex');
-  return Buffer.from(JSON.stringify({ hmac, timestamp })).toString('base64');
-}
-
-function buildOrderEmailHtml(order, otp) {
+function buildOrderEmailHtml(order, ref) {
   const items = (order.items || []).map(item =>
     `<tr>
-      <td style="padding:8px 0; color:#333;">${item.name}</td>
-      <td style="padding:8px 0; color:#333; text-align:center;">x${item.qty}</td>
-      <td style="padding:8px 0; color:#333; text-align:right;">$${(item.price * item.qty).toFixed(2)}</td>
+      <td style="padding:8px 0;color:#333;">${item.name}</td>
+      <td style="padding:8px 0;color:#333;text-align:center;">x${item.qty}</td>
+      <td style="padding:8px 0;color:#333;text-align:right;">$${(item.price * item.qty).toFixed(2)}</td>
     </tr>`
   ).join('');
 
@@ -23,14 +11,13 @@ function buildOrderEmailHtml(order, otp) {
     <div style="font-family:Arial,sans-serif;max-width:620px;margin:0 auto;border:1px solid #e0e0e0;border-radius:10px;overflow:hidden;">
       <div style="background:linear-gradient(135deg,#2E6A6A,#4A8B8B);padding:24px;text-align:center;">
         <h1 style="color:white;margin:0;font-size:22px;">New Order Received</h1>
-        <p style="color:rgba(255,255,255,0.85);margin:6px 0 0;">Promedic Online Pharmacy</p>
+        <p style="color:rgba(255,255,255,0.85);margin:6px 0 0;">Promedic Online Pharmacy &mdash; Ref: ${ref}</p>
       </div>
 
       <div style="padding:28px;background:#fff;">
         <div style="background:#E8F4F4;border-left:4px solid #4A8B8B;padding:16px 20px;border-radius:0 8px 8px 0;margin-bottom:24px;">
-          <p style="margin:0;font-size:14px;color:#2C3E50;">Verification OTP for this order:</p>
-          <p style="margin:8px 0 0;font-size:36px;font-weight:bold;color:#2E6A6A;letter-spacing:10px;">${otp}</p>
-          <p style="margin:6px 0 0;font-size:12px;color:#888;">This code expires in 10 minutes.</p>
+          <p style="margin:0;font-size:15px;color:#2E6A6A;font-weight:bold;">ACTION REQUIRED</p>
+          <p style="margin:8px 0 0;font-size:14px;color:#2C3E50;">A new order has been placed. Please contact the customer within 24 hours to confirm payment and shipping.</p>
         </div>
 
         <h2 style="color:#2E6A6A;font-size:16px;margin:0 0 12px;">Customer Details</h2>
@@ -58,8 +45,8 @@ function buildOrderEmailHtml(order, otp) {
           ${order.notes ? `<tr><td style="padding:8px 0;color:#666;vertical-align:top;"><strong>Notes</strong></td><td style="padding:8px 0;color:#333;">${order.notes}</td></tr>` : ''}
         </table>
 
-        <h2 style="color:#2E6A6A;font-size:16px;margin:0 0 12px;">Order Items</h2>
-        <table style="width:100%;border-collapse:collapse;margin-bottom:20px;">
+        <h2 style="color:#2E6A6A;font-size:16px;margin:0 0 12px;">Items Ordered</h2>
+        <table style="width:100%;border-collapse:collapse;margin-bottom:8px;">
           <thead>
             <tr style="background:#E8F4F4;">
               <th style="padding:8px;text-align:left;color:#2E6A6A;">Item</th>
@@ -103,11 +90,8 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Invalid order data.' });
   }
 
-  const secret = process.env.RESEND_API_KEY || 'promedic-otp-secret';
-  const otp = generateOtp();
-  const token = signToken(otp, secret);
-
-  const emailHtml = buildOrderEmailHtml(order, otp);
+  const ref = 'PMC-' + Date.now().toString(36).toUpperCase();
+  const emailHtml = buildOrderEmailHtml(order, ref);
 
   try {
     const response = await fetch('https://api.resend.com/emails', {
@@ -120,7 +104,7 @@ export default async function handler(req, res) {
         from: 'Promedic Orders <noreply@proomedic.com>',
         to: ['promedic.rx@gmail.com'],
         reply_to: order.email,
-        subject: `New Order — ${order.firstName} ${order.lastName} — $${order.total} [OTP: ${otp}]`,
+        subject: `New Order ${ref} — ${order.firstName} ${order.lastName} — $${order.total}`,
         html: emailHtml,
       }),
     });
@@ -128,10 +112,10 @@ export default async function handler(req, res) {
     if (!response.ok) {
       const errData = await response.json().catch(() => ({}));
       console.error('Resend error:', errData);
-      return res.status(500).json({ error: 'Failed to send verification code. Please try again.' });
+      return res.status(500).json({ error: 'Failed to place order. Please try again.' });
     }
 
-    return res.status(200).json({ success: true, token });
+    return res.status(200).json({ success: true, ref });
   } catch (err) {
     console.error('Order error:', err);
     return res.status(500).json({ error: 'Server error. Please try again.' });

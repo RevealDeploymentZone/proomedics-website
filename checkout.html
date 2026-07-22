@@ -179,42 +179,14 @@
                             </div>
                         </div>
 
-                        <!-- Step 2: OTP Verification -->
-                        <div id="checkout-step-otp" style="display:none;">
-                            <div class="checkout-section otp-section">
-                                <div class="otp-icon">&#128274;</div>
-                                <h3>Verify Your Order</h3>
-                                <p class="otp-desc">We've sent a 6-digit verification code to our pharmacy team. Please enter it below to confirm your order.</p>
-
-                                <div class="form-group">
-                                    <label for="co-otp">Verification Code *</label>
-                                    <input type="text" id="co-otp" placeholder="Enter 6-digit code" maxlength="6" inputmode="numeric" pattern="[0-9]*" class="otp-input">
-                                </div>
-
-                                <div id="otp-status" class="co-status" style="display:none;"></div>
-
-                                <button id="verify-otp-btn" class="place-order-btn">
-                                    Confirm Order
-                                </button>
-
-                                <div class="otp-resend">
-                                    Didn't receive it?
-                                    <button id="resend-otp-btn" class="resend-btn">Resend Code</button>
-                                    <span id="resend-timer" class="resend-timer"></span>
-                                </div>
-
-                                <button id="back-to-form-btn" class="back-btn">&#8592; Back to order details</button>
-                            </div>
-                        </div>
-
-                        <!-- Step 3: Order Confirmed -->
+                        <!-- Step 2: Order Confirmed -->
                         <div id="checkout-step-success" style="display:none;">
                             <div class="checkout-section success-section">
                                 <div class="success-icon">&#10003;</div>
                                 <h3>Order Placed Successfully!</h3>
-                                <p>Thank you for your order. Our pharmacy team will contact you at <strong id="confirm-email"></strong> to confirm payment and shipping details.</p>
-                                <p>Order reference: <strong id="confirm-ref"></strong></p>
-                                <a href="/" class="place-order-btn" style="display:inline-block; text-align:center; text-decoration:none; margin-top:1rem;">Continue Shopping</a>
+                                <p>Thank you for your order. Our team will contact you within <strong>24 hours</strong> to confirm your order.</p>
+                                <p style="color:var(--text-light);font-size:0.88rem;">Order reference: <strong id="confirm-ref"></strong></p>
+                                <a href="/" class="place-order-btn" style="display:inline-block; text-align:center; text-decoration:none; margin-top:1.5rem;">Continue Shopping</a>
                             </div>
                         </div>
 
@@ -254,10 +226,6 @@
     <script>
     (function () {
         var SHIPPING = 7.99;
-        var orderToken = null;
-        var orderData = null;
-        var resendTimer = null;
-        var resendSeconds = 0;
 
         function getCart() {
             try { return JSON.parse(localStorage.getItem('promedic_cart') || '[]'); }
@@ -324,9 +292,7 @@
             ];
             for (var i = 0; i < fields.length; i++) {
                 var el = document.getElementById(fields[i].id);
-                if (!el || !el.value.trim()) {
-                    return fields[i].label + ' is required.';
-                }
+                if (!el || !el.value.trim()) return fields[i].label + ' is required.';
             }
             var email = document.getElementById('co-email').value.trim();
             if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return 'Please enter a valid email address.';
@@ -369,112 +335,30 @@
 
             hideStatus(statusEl);
             btn.disabled = true;
-            btn.textContent = 'Sending verification code...';
-
-            orderData = buildOrderData();
+            btn.textContent = 'Placing order...';
 
             try {
                 var res = await fetch('/api/order', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(orderData)
+                    body: JSON.stringify(buildOrderData())
                 });
                 var data = await res.json();
-                if (!res.ok || !data.success) throw new Error(data.error || 'Failed to send code');
+                if (!res.ok || !data.success) throw new Error(data.error || 'Failed to place order');
 
-                orderToken = data.token;
-                showOtpStep();
-                startResendTimer(60);
+                clearCart();
+                showSuccessStep(data.ref);
             } catch (err) {
-                showStatus(statusEl, 'Something went wrong. Please try again or email us at promedic.rx@gmail.com', 'error');
-            } finally {
+                showStatus(statusEl, err.message || 'Something went wrong. Please try again or email us at promedic.rx@gmail.com', 'error');
                 btn.disabled = false;
                 btn.innerHTML = 'Place Order &mdash; <span id="place-order-total">$' + (cartSubtotal(getCart()) + SHIPPING).toFixed(2) + '</span>';
             }
         }
 
-        async function verifyOtp() {
-            var otp = document.getElementById('co-otp').value.trim();
-            var statusEl = document.getElementById('otp-status');
-            var btn = document.getElementById('verify-otp-btn');
-
-            if (!otp || otp.length !== 6) { showStatus(statusEl, 'Please enter the 6-digit code.', 'error'); return; }
-            if (!orderToken) { showStatus(statusEl, 'Session expired. Please go back and try again.', 'error'); return; }
-
-            hideStatus(statusEl);
-            btn.disabled = true;
-            btn.textContent = 'Confirming...';
-
-            try {
-                var res = await fetch('/api/verify-otp', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ otp: otp, token: orderToken, orderData: orderData })
-                });
-                var data = await res.json();
-                if (!res.ok || !data.success) throw new Error(data.error || 'Invalid or expired code');
-
-                clearCart();
-                showSuccessStep(data.ref);
-            } catch (err) {
-                showStatus(statusEl, err.message || 'Invalid code. Please try again.', 'error');
-                btn.disabled = false;
-                btn.textContent = 'Confirm Order';
-            }
-        }
-
-        async function resendOtp() {
-            if (!orderData) return;
-            var btn = document.getElementById('resend-otp-btn');
-            btn.disabled = true;
-
-            try {
-                var res = await fetch('/api/order', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(orderData)
-                });
-                var data = await res.json();
-                if (!res.ok || !data.success) throw new Error('Failed');
-                orderToken = data.token;
-                document.getElementById('co-otp').value = '';
-                hideStatus(document.getElementById('otp-status'));
-                startResendTimer(60);
-            } catch (err) {
-                var statusEl = document.getElementById('otp-status');
-                showStatus(statusEl, 'Could not resend code. Please try again.', 'error');
-                btn.disabled = false;
-            }
-        }
-
-        function startResendTimer(seconds) {
-            resendSeconds = seconds;
-            var timerEl = document.getElementById('resend-timer');
-            var resendBtn = document.getElementById('resend-otp-btn');
-            if (resendBtn) resendBtn.disabled = true;
-            if (resendTimer) clearInterval(resendTimer);
-            resendTimer = setInterval(function () {
-                resendSeconds--;
-                if (timerEl) timerEl.textContent = '(' + resendSeconds + 's)';
-                if (resendSeconds <= 0) {
-                    clearInterval(resendTimer);
-                    if (timerEl) timerEl.textContent = '';
-                    if (resendBtn) resendBtn.disabled = false;
-                }
-            }, 1000);
-        }
-
-        function showOtpStep() {
-            document.getElementById('checkout-step-form').style.display = 'none';
-            document.getElementById('checkout-step-otp').style.display = 'block';
-        }
-
         function showSuccessStep(ref) {
-            document.getElementById('checkout-step-otp').style.display = 'none';
+            document.getElementById('checkout-step-form').style.display = 'none';
             document.getElementById('checkout-step-success').style.display = 'block';
-            var emailEl = document.getElementById('confirm-email');
             var refEl = document.getElementById('confirm-ref');
-            if (emailEl && orderData) emailEl.textContent = orderData.email;
             if (refEl) refEl.textContent = ref || '#' + Date.now();
         }
 
@@ -497,19 +381,6 @@
 
         var placeBtn = document.getElementById('place-order-btn');
         if (placeBtn) placeBtn.addEventListener('click', placeOrder);
-
-        var verifyBtn = document.getElementById('verify-otp-btn');
-        if (verifyBtn) verifyBtn.addEventListener('click', verifyOtp);
-
-        var resendBtn = document.getElementById('resend-otp-btn');
-        if (resendBtn) resendBtn.addEventListener('click', resendOtp);
-
-        var backBtn = document.getElementById('back-to-form-btn');
-        if (backBtn) backBtn.addEventListener('click', function () {
-            document.getElementById('checkout-step-otp').style.display = 'none';
-            document.getElementById('checkout-step-form').style.display = 'block';
-            if (resendTimer) clearInterval(resendTimer);
-        });
 
         // Dropdown toggle
         document.querySelectorAll('.dropdown-toggle').forEach(function (toggle) {
