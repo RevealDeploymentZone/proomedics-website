@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
   <channel>
-    <title>Promedic Product Feed</title>
+    <title>Promedic OTC Product Feed</title>
     <link>https://www.proomedic.com</link>
-    <description>Promedic - ED Medications and OTC Pharmacy</description>
+    <description>Promedic - OTC Medications</description>
     <item>
       <g:id>cetirizine-10mg</g:id>
       <g:title>Buy Cetirizine 10mg (45ct) Online</g:title>
       <g:description>Buy Cetirizine HCl 10mg (45 count) online. 24-hour OTC allergy relief for sneezing, runny nose, itchy/watery eyes, and hives. Same as Zyrtec. Order from Promedic.</g:description>
       <g:link>https://www.proomedic.com/PRODUCTS/cetirizine-10mg</g:link>
-      <g:image_link>https://www.proomedic.com/images/Viagra.webp</g:image_link>
+      <g:image_link></g:image_link>
       <g:price>14.00 USD</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -17,23 +17,11 @@
       <g:google_product_category>491</g:google_product_category>
     </item>
     <item>
-      <g:id>cialis</g:id>
-      <g:title>Buy Cialis Online USA</g:title>
-      <g:description>Buy Cialis (Tadalafil) online in USA — the 36-hour ED pill. 5mg daily &amp;amp; 20mg on-demand. FDA-approved, discreet delivery to all 50 states. Competitive prices.</g:description>
-      <g:link>https://www.proomedic.com/PRODUCTS/cialis</g:link>
-      <g:image_link>https://www.proomedic.com/images/Cialis.webp</g:image_link>
-      <g:price>12.00 USD</g:price>
-      <g:availability>in_stock</g:availability>
-      <g:condition>new</g:condition>
-      <g:brand>Eli Lilly</g:brand>
-      <g:google_product_category>491</g:google_product_category>
-    </item>
-    <item>
       <g:id>acetaminophen-500mg</g:id>
       <g:title>Buy Acetaminophen 500mg (100ct) Online</g:title>
       <g:description>Buy Acetaminophen 500mg tablets (100 count) online. Effective OTC pain reliever and fever reducer, gentle on the stomach. Order from Promedic US licensed pharmacy.</g:description>
       <g:link>https://www.proomedic.com/PRODUCTS/acetaminophen-500mg</g:link>
-      <g:image_link>https://www.proomedic.com/images/Viagra.webp</g:image_link>
+      <g:image_link></g:image_link>
       <g:price>7.00 USD</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -45,7 +33,7 @@
       <g:title>Buy Aspirin 325mg (100ct) Online</g:title>
       <g:description>Buy Aspirin 325mg tablets (100 count) online. OTC pain reliever for headaches, arthritis, and fever — plus cardiovascular protection. Order from Promedic US pharmacy.</g:description>
       <g:link>https://www.proomedic.com/PRODUCTS/aspirin-325mg</g:link>
-      <g:image_link>https://www.proomedic.com/images/Viagra.webp</g:image_link>
+      <g:image_link></g:image_link>
       <g:price>6.00 USD</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -57,7 +45,7 @@
       <g:title>Buy DayQuil LiquiCaps (24ct) Online</g:title>
       <g:description>Buy DayQuil LiquiCaps (24 count) online. Non-drowsy daytime relief for cold and flu symptoms including fever, congestion, cough, and body aches. Order from Promedic.</g:description>
       <g:link>https://www.proomedic.com/PRODUCTS/dayquil-liquicaps</g:link>
-      <g:image_link>https://www.proomedic.com/images/Viagra.webp</g:image_link>
+      <g:image_link></g:image_link>
       <g:price>11.00 USD</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -69,7 +57,7 @@
       <g:title>Buy Diphenhydramine 25mg (24ct) Online</g:title>
       <g:description>Buy Diphenhydramine HCl 25mg (24 count) online. OTC antihistamine for allergy symptoms and nighttime sleep aid. Same as Benadryl. Order from Promedic US pharmacy.</g:description>
       <g:link>https://www.proomedic.com/PRODUCTS/diphenhydramine-25mg</g:link>
-      <g:image_link>https://www.proomedic.com/images/Viagra.webp</g:image_link>
+      <g:image_link></g:image_link>
       <g:price>8.00 USD</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -81,7 +69,7 @@
       <g:title>Buy Ibuprofen 200mg (100ct) Online</g:title>
       <g:description>Buy Ibuprofen 200mg tablets (100 count) online. Fast-acting NSAID for headaches, muscle pain, back pain, arthritis, and fever. Order from Promedic US pharmacy.</g:description>
       <g:link>https://www.proomedic.com/PRODUCTS/ibuprofen-200mg</g:link>
-      <g:image_link>https://www.proomedic.com/images/Viagra.webp</g:image_link>
+      <g:image_link></g:image_link>
       <g:price>8.00 USD</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -89,35 +77,11 @@
       <g:google_product_category>491</g:google_product_category>
     </item>
     <item>
-      <g:id>kamagra</g:id>
-      <g:title>Buy Kamagra Online USA</g:title>
-      <g:description>Order Kamagra 100mg online in USA. Same active ingredient as Viagra at a lower cost. Tablets &amp;amp; Oral Jelly available. Discreet shipping to all 50 US states.</g:description>
-      <g:link>https://www.proomedic.com/PRODUCTS/kamagra</g:link>
-      <g:image_link>https://www.proomedic.com/images/Kamagra.webp</g:image_link>
-      <g:price>5.00 USD</g:price>
-      <g:availability>in_stock</g:availability>
-      <g:condition>new</g:condition>
-      <g:brand>Ajanta Pharma</g:brand>
-      <g:google_product_category>491</g:google_product_category>
-    </item>
-    <item>
-      <g:id>levitra</g:id>
-      <g:title>Buy Levitra Online USA</g:title>
-      <g:description>Order Levitra (Vardenafil) online in USA. Works in 25 minutes, effective 4-5 hours. 10mg &amp;amp; 20mg. FDA-compliant, discreet delivery to all 50 US states.</g:description>
-      <g:link>https://www.proomedic.com/PRODUCTS/levitra</g:link>
-      <g:image_link>https://www.proomedic.com/images/Levitra.webp</g:image_link>
-      <g:price>10.00 USD</g:price>
-      <g:availability>in_stock</g:availability>
-      <g:condition>new</g:condition>
-      <g:brand>Bayer</g:brand>
-      <g:google_product_category>491</g:google_product_category>
-    </item>
-    <item>
       <g:id>loperamide-2mg</g:id>
       <g:title>Buy Loperamide 2mg (24ct) Online</g:title>
       <g:description>Buy Loperamide HCl 2mg (24 count) online. Fast-acting OTC anti-diarrheal medication. Controls and relieves acute diarrhea symptoms. Same as Imodium A-D. Order from Promedic.</g:description>
       <g:link>https://www.proomedic.com/PRODUCTS/loperamide-2mg</g:link>
-      <g:image_link>https://www.proomedic.com/images/Viagra.webp</g:image_link>
+      <g:image_link></g:image_link>
       <g:price>7.00 USD</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -129,7 +93,7 @@
       <g:title>Buy Loratadine 10mg (30ct) Online</g:title>
       <g:description>Buy Loratadine 10mg (30 count) online. Non-drowsy 24-hour OTC allergy relief for hay fever, pet allergies, and seasonal allergies. Order from Promedic US pharmacy.</g:description>
       <g:link>https://www.proomedic.com/PRODUCTS/loratadine-10mg</g:link>
-      <g:image_link>https://www.proomedic.com/images/Viagra.webp</g:image_link>
+      <g:image_link></g:image_link>
       <g:price>12.00 USD</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -141,7 +105,7 @@
       <g:title>Buy Meclizine 25mg (30ct) Online</g:title>
       <g:description>Buy Meclizine HCl 25mg (30 count) online. OTC relief for motion sickness, dizziness, and vertigo. Same as Bonine. Less drowsy than Dramamine. Order from Promedic.</g:description>
       <g:link>https://www.proomedic.com/PRODUCTS/meclizine-25mg</g:link>
-      <g:image_link>https://www.proomedic.com/images/Viagra.webp</g:image_link>
+      <g:image_link></g:image_link>
       <g:price>10.00 USD</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -153,7 +117,7 @@
       <g:title>Buy MiraLax Laxative (30 doses) Online</g:title>
       <g:description>Buy MiraLax Polyethylene Glycol 3350 laxative (30 doses) online. Gentle, stimulant-free constipation relief. Works with your body naturally. Order from Promedic US pharmacy.</g:description>
       <g:link>https://www.proomedic.com/PRODUCTS/miralax-laxative</g:link>
-      <g:image_link>https://www.proomedic.com/images/Viagra.webp</g:image_link>
+      <g:image_link></g:image_link>
       <g:price>18.00 USD</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -165,7 +129,7 @@
       <g:title>Buy Mucinex Guaifenesin 400mg (20ct) Online</g:title>
       <g:description>Buy Mucinex Guaifenesin 400mg extended-release tablets (20 count) online. Thins and loosens chest congestion for easier coughing. Order from Promedic US pharmacy.</g:description>
       <g:link>https://www.proomedic.com/PRODUCTS/mucinex-400mg</g:link>
-      <g:image_link>https://www.proomedic.com/images/Viagra.webp</g:image_link>
+      <g:image_link></g:image_link>
       <g:price>10.00 USD</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -177,7 +141,7 @@
       <g:title>Buy Naproxen Sodium 220mg (80ct) Online</g:title>
       <g:description>Buy Naproxen Sodium 220mg (80 count) online. Long-lasting 12-hour OTC anti-inflammatory for arthritis, back pain, muscle aches, and menstrual cramps. Order from Promedic.</g:description>
       <g:link>https://www.proomedic.com/PRODUCTS/naproxen-220mg</g:link>
-      <g:image_link>https://www.proomedic.com/images/Viagra.webp</g:image_link>
+      <g:image_link></g:image_link>
       <g:price>9.00 USD</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -189,7 +153,7 @@
       <g:title>Buy NyQuil Cold &amp; Flu Liquid (12oz) Online</g:title>
       <g:description>Buy NyQuil Cold &amp; Flu Relief liquid (12oz) online. Nighttime relief for cold and flu symptoms including fever, sore throat, cough, and congestion. Order from Promedic.</g:description>
       <g:link>https://www.proomedic.com/PRODUCTS/nyquil-cold-flu</g:link>
-      <g:image_link>https://www.proomedic.com/images/Viagra.webp</g:image_link>
+      <g:image_link></g:image_link>
       <g:price>12.00 USD</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -201,7 +165,7 @@
       <g:title>Buy Omeprazole OTC 20mg (42ct) Online</g:title>
       <g:description>Buy Omeprazole OTC 20mg (42 count) online. 24-hour treatment for frequent heartburn and acid reflux (GERD). Proton pump inhibitor. Order from Promedic US pharmacy.</g:description>
       <g:link>https://www.proomedic.com/PRODUCTS/omeprazole-20mg</g:link>
-      <g:image_link>https://www.proomedic.com/images/Viagra.webp</g:image_link>
+      <g:image_link></g:image_link>
       <g:price>15.00 USD</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
@@ -213,47 +177,11 @@
       <g:title>Buy Phenylephrine HCl 10mg Tablets (24ct) Online</g:title>
       <g:description>Buy Phenylephrine HCl 10mg tablets (24 count) online. Fast OTC nasal decongestant for sinus pressure and stuffy nose relief. Same as Sudafed PE. Order from Promedic.</g:description>
       <g:link>https://www.proomedic.com/PRODUCTS/phenylephrine-10mg</g:link>
-      <g:image_link>https://www.proomedic.com/images/Viagra.webp</g:image_link>
+      <g:image_link></g:image_link>
       <g:price>9.00 USD</g:price>
       <g:availability>in_stock</g:availability>
       <g:condition>new</g:condition>
       <g:brand>Sudafed PE</g:brand>
-      <g:google_product_category>491</g:google_product_category>
-    </item>
-    <item>
-      <g:id>sildenafil</g:id>
-      <g:title>Buy Generic Sildenafil Online USA</g:title>
-      <g:description>Buy FDA-approved generic Sildenafil online in USA. Same ingredient as Viagra, up to 90% cheaper. 25mg, 50mg &amp;amp; 100mg. Discreet delivery to all 50 states.</g:description>
-      <g:link>https://www.proomedic.com/PRODUCTS/sildenafil</g:link>
-      <g:image_link>https://www.proomedic.com/images/Sildenafil.webp</g:image_link>
-      <g:price>6.00 USD</g:price>
-      <g:availability>in_stock</g:availability>
-      <g:condition>new</g:condition>
-      <g:brand>Promedic</g:brand>
-      <g:google_product_category>491</g:google_product_category>
-    </item>
-    <item>
-      <g:id>spedra</g:id>
-      <g:title>Buy Spedra Online USA</g:title>
-      <g:description>Order Spedra (Avanafil) online in USA. The fastest ED medication — works in 15-30 minutes. 100mg &amp;amp; 200mg. US licensed pharmacy, discreet delivery.</g:description>
-      <g:link>https://www.proomedic.com/PRODUCTS/spedra</g:link>
-      <g:image_link>https://www.proomedic.com/images/Spedra.webp</g:image_link>
-      <g:price>14.00 USD</g:price>
-      <g:availability>in_stock</g:availability>
-      <g:condition>new</g:condition>
-      <g:brand>Menarini</g:brand>
-      <g:google_product_category>491</g:google_product_category>
-    </item>
-    <item>
-      <g:id>viagra</g:id>
-      <g:title>Buy Viagra Online USA</g:title>
-      <g:description>Order genuine Viagra (Sildenafil Citrate) online in USA. FDA-approved 25mg, 50mg &amp;amp; 100mg tablets. Discreet packaging, fast delivery to all 50 states. US licensed pharmacy.</g:description>
-      <g:link>https://www.proomedic.com/PRODUCTS/viagra</g:link>
-      <g:image_link>https://www.proomedic.com/images/Viagra.webp</g:image_link>
-      <g:price>8.00 USD</g:price>
-      <g:availability>in_stock</g:availability>
-      <g:condition>new</g:condition>
-      <g:brand>Pfizer</g:brand>
       <g:google_product_category>491</g:google_product_category>
     </item>
   </channel>
