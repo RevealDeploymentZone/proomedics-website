@@ -29,8 +29,17 @@ jobs:
           TODAY = date.today().isoformat()
 
           PRODUCT_PAGES = {"viagra", "cialis", "kamagra", "sildenafil", "levitra", "spedra"}
+          OTC_PAGES = {
+              "ibuprofen-200mg", "acetaminophen-500mg", "naproxen-220mg", "aspirin-325mg",
+              "omeprazole-20mg", "loratadine-10mg", "cetirizine-10mg", "diphenhydramine-25mg",
+              "mucinex-400mg", "nyquil-cold-flu", "dayquil-liquicaps", "loperamide-2mg",
+              "miralax-laxative", "meclizine-25mg", "phenylephrine-10mg"
+          }
 
-          EXCLUDE = {"404.html", "thankyou.html", "thank-you.html"}
+          EXCLUDE = {
+              "404.html", "thankyou.html", "thank-you.html",
+              "checkout.html", "header-footer-template.html"
+          }
 
           def get_url_info(filepath):
               filename = os.path.basename(filepath)
@@ -45,11 +54,14 @@ jobs:
                   priority = "1.0"
                   changefreq = "weekly"
               elif dirpath.startswith("blog"):
-                  url = BASE_URL + "/blog/" + name
+                  if name == "index":
+                      url = BASE_URL + "/blog"
+                  else:
+                      url = BASE_URL + "/blog/" + name
                   priority = "0.8"
                   changefreq = "monthly"
-              elif name in PRODUCT_PAGES:
-                  url = BASE_URL + "/" + name
+              elif name in PRODUCT_PAGES or name in OTC_PAGES:
+                  url = BASE_URL + "/PRODUCTS/" + name
                   priority = "0.9"
                   changefreq = "weekly"
               else:
