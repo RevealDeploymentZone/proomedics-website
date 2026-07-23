@@ -246,6 +246,11 @@
   ],
   "redirects": [
     {
+      "source": "/products/levitra",
+      "destination": "/PRODUCTS/levitra",
+      "permanent": true
+    },
+    {
       "source": "/viagra",
       "destination": "/PRODUCTS/viagra",
       "permanent": true
