@@ -3118,3 +3118,30 @@ a:focus, button:focus {
 .pay-badge:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
 .legitscript-wrap a { text-decoration: none; }
 .legitscript-wrap a:hover svg { opacity: 0.88; }
+
+/* ===== TRUST CERTS SLIDER ===== */
+.trust-certs-section {
+    overflow: hidden;
+    padding: 1.6rem 0;
+    background: #fff;
+    border-top: 1px solid #e8f0f0;
+    border-bottom: 1px solid #e8f0f0;
+}
+.trust-slider-wrap {
+    overflow: hidden;
+    width: 100%;
+}
+.trust-slider-track {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    width: max-content;
+    animation: trustSlide 14s linear infinite;
+}
+.trust-slider-track:hover {
+    animation-play-state: paused;
+}
+@keyframes trustSlide {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
