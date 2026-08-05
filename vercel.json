@@ -1,6 +1,26 @@
 {
   "rewrites": [
     {
+      "source": "/blog/ibuprofen-vs-acetaminophen",
+      "destination": "/blog/ibuprofen-vs-acetaminophen.html"
+    },
+    {
+      "source": "/blog/cetirizine-vs-loratadine-allergy",
+      "destination": "/blog/cetirizine-vs-loratadine-allergy.html"
+    },
+    {
+      "source": "/blog/omeprazole-acid-reflux-guide",
+      "destination": "/blog/omeprazole-acid-reflux-guide.html"
+    },
+    {
+      "source": "/blog/erectile-dysfunction-obesity",
+      "destination": "/blog/erectile-dysfunction-obesity.html"
+    },
+    {
+      "source": "/blog/kamagra-vs-viagra",
+      "destination": "/blog/kamagra-vs-viagra.html"
+    },
+    {
       "source": "/blog/oxycontin-complete-guide",
       "destination": "/blog/oxycontin-complete-guide.html"
     },
