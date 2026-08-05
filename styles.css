@@ -3145,3 +3145,56 @@ a:focus, button:focus {
     0%   { transform: translateX(0); }
     100% { transform: translateX(-50%); }
 }
+
+/* ── Blog image placeholder ───────────────────────────────────────────────── */
+/* Higher specificity (.blog-content .blog-hero-img-wrap = 0-2-0) overrides   */
+/* each blog's inline <style> block (.blog-hero-img-wrap = 0-1-0)             */
+.blog-content .blog-hero-img-wrap {
+    position: relative;
+    overflow: hidden;
+    max-height: 420px;
+    min-height: 180px;
+    border-radius: 10px;
+    margin: 2rem 0;
+    padding: 0;
+    background: #e8f4f4;
+    border: 2px dashed #0d8080;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* "Upload image here" label shown when image is missing */
+.blog-content .blog-hero-img-wrap::before {
+    content: "📷  Blog image — upload to /images/blog/";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0d8080;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Once the image loads it sits on top and hides the label */
+.blog-content .blog-hero-img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-height: 420px;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    border-radius: 8px;
+}
+
+/* Hide broken-image browser rendering; the ::before label shows instead */
+.blog-content .blog-hero-img[src=""],
+.blog-content .blog-hero-img:not([src]) {
+    display: none;
+}
+
