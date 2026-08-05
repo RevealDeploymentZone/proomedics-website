@@ -1,6 +1,22 @@
 {
   "rewrites": [
     {
+      "source": "/blog/oxycontin-complete-guide",
+      "destination": "/blog/oxycontin-complete-guide.html"
+    },
+    {
+      "source": "/blog/oxycodone-complete-guide",
+      "destination": "/blog/oxycodone-complete-guide.html"
+    },
+    {
+      "source": "/blog/hydrocodone-complete-guide",
+      "destination": "/blog/hydrocodone-complete-guide.html"
+    },
+    {
+      "source": "/blog/tapentadol-complete-guide",
+      "destination": "/blog/tapentadol-complete-guide.html"
+    },
+    {
       "source": "/blog",
       "destination": "/blog/index.html"
     },
