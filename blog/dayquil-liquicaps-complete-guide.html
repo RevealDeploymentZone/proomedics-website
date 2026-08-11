@@ -51,6 +51,69 @@
         .info-box { background: #e8f5e9; border-left: 4px solid #2e7d32; padding: 18px 20px; margin: 1.5rem 0; border-radius: 0 8px 8px 0; }
         .info-box strong { color: #1b5e20; }
     </style>
+    <!-- FAQPage Schema (AEO) -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do you swallow DayQuil LiquiCaps whole?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes \u2014 DayQuil LiquiCaps should be swallowed whole. Do not chew, crush, or break them open. The liquid-filled capsule is designed to release its contents in the stomach. Swallowing them whole ensures proper dosing and prevents the medication from tasting bitter."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many DayQuil LiquiCaps can I take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The standard adult dose is 2 LiquiCaps every 4 hours. Do not take more than 4 doses (8 LiquiCaps) in 24 hours. Do not exceed 4,000mg of acetaminophen per day from all sources combined."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the active ingredients in DayQuil LiquiCaps?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "DayQuil LiquiCaps contain three active ingredients: Acetaminophen 325mg (fever reducer/pain reliever), Dextromethorphan HBr 10mg (cough suppressant), and Phenylephrine HCl 5mg (nasal decongestant)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I take DayQuil with other medications?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Do NOT take DayQuil with other products containing acetaminophen (Tylenol, NyQuil, etc.) \u2014 this can cause acetaminophen overdose and liver damage. Do not take with MAO inhibitors. Consult a doctor if taking blood pressure medications or antidepressants."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does DayQuil take to work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "DayQuil LiquiCaps typically start working within 30\u201345 minutes. The fever-reducing effect of acetaminophen is usually felt within 30 minutes, while the decongestant (phenylephrine) and cough suppressant (DXM) take 30\u201360 minutes to reach peak effectiveness."
+      }
+    }
+  ]
+}</script>
+    <!-- Speakable Schema (GEO) -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "DayQuil LiquiCaps Complete Guide | Promedic Blog",
+  "url": "https://www.proomedic.com/blog/dayquil-liquicaps-complete-guide",
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": [
+      ".blog-hero h1",
+      ".article-intro",
+      ".drug-profile-box",
+      ".faq-answer"
+    ]
+  }
+}</script>
 </head>
 <body>
     <header>
@@ -349,6 +412,18 @@
         </div>
     </section>
 
+        <!-- Medical References Section -->
+    <section class="references-section" style="background:#f8f9fa;padding:2rem 0;border-top:1px solid #e9ecef;">
+        <div class="container">
+            <h2 style="font-size:1.2rem;color:#495057;margin-bottom:1rem;">Medical References &amp; Further Reading</h2>
+            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:1rem;">
+                <li><a href="https://www.fda.gov/drugs/information-drug-class/acetaminophen-information" target="_blank" rel="noopener noreferrer" style="color:#0066cc;font-size:0.9rem;">FDA: Acetaminophen Safety →</a></li>
+                <li><a href="https://medlineplus.gov/druginfo/meds/a682492.html" target="_blank" rel="noopener noreferrer" style="color:#0066cc;font-size:0.9rem;">NIH MedlinePlus: Dextromethorphan (DXM) →</a></li>
+                <li><a href="https://www.webmd.com/drugs/2/drug-6615/dayquil-cold-flu-oral/details" target="_blank" rel="noopener noreferrer" style="color:#0066cc;font-size:0.9rem;">WebMD: DayQuil Drug Information →</a></li>
+                <li><a href="https://www.mayoclinic.org/drugs-supplements/phenylephrine-oral-route/description/drg-20065222" target="_blank" rel="noopener noreferrer" style="color:#0066cc;font-size:0.9rem;">Mayo Clinic: Phenylephrine Uses & Side Effects →</a></li>
+            </ul>
+        </div>
+    </section>
     <footer>
         <div class="container">
             <div class="footer-grid">
