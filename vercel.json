@@ -1,6 +1,26 @@
 {
   "rewrites": [
     {
+      "source": "/blog/how-to-buy-levitra-online",
+      "destination": "/blog/how-to-buy-levitra-online.html"
+    },
+    {
+      "source": "/blog/kamagra-100mg-tablets-guide",
+      "destination": "/blog/kamagra-100mg-tablets-guide.html"
+    },
+    {
+      "source": "/blog/phenylephrine-otc-guide",
+      "destination": "/blog/phenylephrine-otc-guide.html"
+    },
+    {
+      "source": "/blog/meclizine-vertigo-guide",
+      "destination": "/blog/meclizine-vertigo-guide.html"
+    },
+    {
+      "source": "/blog/dayquil-liquicaps-complete-guide",
+      "destination": "/blog/dayquil-liquicaps-complete-guide.html"
+    },
+    {
       "source": "/blog/ibuprofen-vs-acetaminophen",
       "destination": "/blog/ibuprofen-vs-acetaminophen.html"
     },
