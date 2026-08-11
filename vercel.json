@@ -1,6 +1,22 @@
 {
   "rewrites": [
     {
+      "source": "/blog/how-to-buy-cialis-online",
+      "destination": "/blog/how-to-buy-cialis-online.html"
+    },
+    {
+      "source": "/blog/how-to-buy-kamagra-online",
+      "destination": "/blog/how-to-buy-kamagra-online.html"
+    },
+    {
+      "source": "/blog/miralax-generic-guide",
+      "destination": "/blog/miralax-generic-guide.html"
+    },
+    {
+      "source": "/blog/loperamide-2mg-guide",
+      "destination": "/blog/loperamide-2mg-guide.html"
+    },
+    {
       "source": "/blog/how-to-buy-levitra-online",
       "destination": "/blog/how-to-buy-levitra-online.html"
     },
