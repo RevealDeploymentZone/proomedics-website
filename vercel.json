@@ -1,6 +1,22 @@
 {
   "rewrites": [
     {
+      "source": "/blog/opioid-use-disorder-guide",
+      "destination": "/blog/opioid-use-disorder-guide.html"
+    },
+    {
+      "source": "/blog/fentanyl-vs-heroin-dangers",
+      "destination": "/blog/fentanyl-vs-heroin-dangers.html"
+    },
+    {
+      "source": "/blog/how-to-help-someone-opioid-addiction",
+      "destination": "/blog/how-to-help-someone-opioid-addiction.html"
+    },
+    {
+      "source": "/blog/naloxone-narcan-complete-guide",
+      "destination": "/blog/naloxone-narcan-complete-guide.html"
+    },
+    {
       "source": "/blog/how-to-buy-cialis-online",
       "destination": "/blog/how-to-buy-cialis-online.html"
     },
