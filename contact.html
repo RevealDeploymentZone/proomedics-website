@@ -140,10 +140,11 @@
                                 onfocus="this.style.borderColor='#0d8080'" onblur="this.style.borderColor='#ddd'">
                         </div>
                         <div style="margin-bottom:1.2rem;">
-                            <label style="display:block;font-weight:600;color:#333;margin-bottom:.4rem;">Phone Number</label>
-                            <input type="tel" name="phone" placeholder="+1 (000) 000-0000"
+                            <label style="display:block;font-weight:600;color:#333;margin-bottom:.4rem;">Phone Number <span style="color:#e53935;">*</span></label>
+                            <input type="tel" name="phone" required placeholder="+1 (000) 000-0000"
                                 style="width:100%;padding:12px 14px;border:1.5px solid #ddd;border-radius:8px;font-size:1rem;outline:none;box-sizing:border-box;transition:border-color .2s;"
                                 onfocus="this.style.borderColor='#0d8080'" onblur="this.style.borderColor='#ddd'">
+                            <p style="font-size:0.82rem;color:#888;margin:4px 0 0;">We'll send a one-time verification code to confirm your number.</p>
                         </div>
                         <div style="margin-bottom:1.2rem;">
                             <label style="display:block;font-weight:600;color:#333;margin-bottom:.4rem;">What are you enquiring about?</label>
@@ -184,51 +185,182 @@
                             style="width:100%;background:#0d8080;color:white;border:none;padding:14px;border-radius:8px;font-size:1.05rem;font-weight:600;cursor:pointer;transition:background .2s;">
                             Send Message
                         </button>
-                        <div id="formSuccess" style="display:none;margin-top:1.2rem;padding:14px 18px;background:#e8f5e9;border:1.5px solid #43a047;border-radius:8px;color:#2e7d32;font-weight:600;text-align:center;">
-                            Message sent! We will get back to you within 24 hours.
-                        </div>
                         <div id="formError" style="display:none;margin-top:1.2rem;padding:14px 18px;background:#fff3f3;border:1.5px solid #e53935;border-radius:8px;color:#c62828;font-weight:600;text-align:center;">
                             Something went wrong. Please email us at <a href="mailto:promedic.rx@gmail.com" style="color:#c62828;">promedic.rx@gmail.com</a>
                         </div>
                     </form>
+
+                    <!-- OTP verification panel (shown after form submit) -->
+                    <div id="otpPanel" style="display:none;text-align:center;padding:10px 0;">
+                        <div style="font-size:2.5rem;margin-bottom:1rem;">📱</div>
+                        <h3 style="color:#0a5c5c;margin:0 0 .5rem;">Verify Your Phone Number</h3>
+                        <p style="color:#555;margin:0 0 1.5rem;">We sent a 6-digit code to <strong id="otp-contact-phone"></strong>.<br>Enter it below to send your message.</p>
+                        <div style="margin-bottom:1.2rem;">
+                            <input type="text" id="contactOtpInput" placeholder="000000" maxlength="6" inputmode="numeric" autocomplete="one-time-code"
+                                style="width:160px;padding:12px;border:1.5px solid #ddd;border-radius:8px;font-size:1.6rem;text-align:center;letter-spacing:0.4rem;outline:none;"
+                                onfocus="this.style.borderColor='#0d8080'" onblur="this.style.borderColor='#ddd'">
+                        </div>
+                        <div id="otpError" style="display:none;margin-bottom:1rem;padding:12px 16px;background:#fff3f3;border:1.5px solid #e53935;border-radius:8px;color:#c62828;font-weight:600;"></div>
+                        <button id="contactVerifyBtn"
+                            style="width:100%;background:#0d8080;color:white;border:none;padding:14px;border-radius:8px;font-size:1.05rem;font-weight:600;cursor:pointer;transition:background .2s;">
+                            Verify &amp; Send Message
+                        </button>
+                        <p style="margin-top:1rem;">
+                            <button id="contactResendBtn" style="background:none;border:none;color:#0d8080;cursor:pointer;text-decoration:underline;font-size:0.9rem;padding:0;">
+                                Didn't receive it? Resend code
+                            </button>
+                        </p>
+                        <p style="margin-top:0.4rem;">
+                            <button id="contactBackBtn" style="background:none;border:none;color:#888;cursor:pointer;font-size:0.9rem;padding:0;">
+                                &larr; Back to form
+                            </button>
+                        </p>
+                    </div>
+
+                    <!-- Final success message -->
+                    <div id="formSuccess" style="display:none;margin-top:1.2rem;padding:14px 18px;background:#e8f5e9;border:1.5px solid #43a047;border-radius:8px;color:#2e7d32;font-weight:600;text-align:center;">
+                        Message sent! We will get back to you within 24 hours.
+                    </div>
                 </div>
             </div>
         </section>
         <script>
+        var _contactOtpToken = null;
+        var _contactFormData = null;
+
         document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             var btn = document.getElementById('submitBtn');
-            btn.textContent = 'Sending...';
-            btn.disabled = true;
-            document.getElementById('formSuccess').style.display = 'none';
             document.getElementById('formError').style.display = 'none';
-            var formData = {
+
+            var phone = this.phone.value.trim();
+            if (!phone) {
+                document.getElementById('formError').style.display = 'block';
+                document.getElementById('formError').textContent = 'Phone number is required for verification.';
+                return;
+            }
+            var digits = phone.replace(/\D/g, '');
+            if (digits.length < 10) {
+                document.getElementById('formError').style.display = 'block';
+                document.getElementById('formError').innerHTML = 'Please enter a valid phone number.';
+                return;
+            }
+
+            _contactFormData = {
                 name: this.name.value,
                 email: this.email.value,
-                phone: this.phone.value,
+                phone: phone,
                 medication: this.medication.value,
                 other_medication: this.other_medication ? this.other_medication.value : '',
                 message: this.message.value
             };
+
+            btn.textContent = 'Sending verification code...';
+            btn.disabled = true;
+
             try {
-                var resp = await fetch('/api/contact', {
+                var resp = await fetch('/api/send-otp', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify(formData)
+                    body: JSON.stringify({ phone: phone })
                 });
-                if (resp.ok) {
-                    document.getElementById('formSuccess').style.display = 'block';
-                    this.reset();
-                    document.getElementById('otherMedRow').style.display = 'none';
-                } else {
-                    document.getElementById('formError').style.display = 'block';
-                }
+                var data = await resp.json();
+                if (!resp.ok || !data.token) throw new Error(data.error || 'Failed to send code');
+
+                _contactOtpToken = data.token;
+                document.getElementById('contactForm').style.display = 'none';
+                document.getElementById('otpPanel').style.display = 'block';
+                document.getElementById('otp-contact-phone').textContent = phone;
+                document.getElementById('contactOtpInput').value = '';
+                document.getElementById('otpError').style.display = 'none';
             } catch(err) {
                 document.getElementById('formError').style.display = 'block';
+                document.getElementById('formError').innerHTML = err.message || 'Could not send verification code. Please try again.';
             }
             btn.textContent = 'Send Message';
             btn.disabled = false;
         });
+
+        document.getElementById('contactVerifyBtn').addEventListener('click', async function() {
+            var otp = document.getElementById('contactOtpInput').value.trim();
+            var otpErr = document.getElementById('otpError');
+            otpErr.style.display = 'none';
+
+            if (!otp || otp.length !== 6 || !/^\d{6}$/.test(otp)) {
+                otpErr.textContent = 'Please enter the 6-digit code sent to your phone.';
+                otpErr.style.display = 'block';
+                return;
+            }
+
+            this.textContent = 'Verifying...';
+            this.disabled = true;
+
+            try {
+                var verifyResp = await fetch('/api/verify-phone', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ otp: otp, token: _contactOtpToken })
+                });
+                var verifyData = await verifyResp.json();
+                if (!verifyResp.ok || !verifyData.success) throw new Error(verifyData.error || 'Incorrect code');
+
+                var contactResp = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(_contactFormData)
+                });
+                if (!contactResp.ok) throw new Error('Failed to send message. Please email us directly.');
+
+                document.getElementById('otpPanel').style.display = 'none';
+                document.getElementById('formSuccess').style.display = 'block';
+                document.getElementById('otherMedRow').style.display = 'none';
+            } catch(err) {
+                otpErr.textContent = err.message || 'Verification failed. Please try again.';
+                otpErr.style.display = 'block';
+            }
+            this.textContent = 'Verify & Send Message';
+            this.disabled = false;
+        });
+
+        document.getElementById('contactOtpInput').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') document.getElementById('contactVerifyBtn').click();
+        });
+
+        document.getElementById('contactResendBtn').addEventListener('click', async function() {
+            var otpErr = document.getElementById('otpError');
+            this.disabled = true;
+            this.textContent = 'Sending...';
+            try {
+                var resp = await fetch('/api/send-otp', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ phone: _contactFormData.phone })
+                });
+                var data = await resp.json();
+                if (!resp.ok || !data.token) throw new Error(data.error || 'Failed to resend');
+                _contactOtpToken = data.token;
+                document.getElementById('contactOtpInput').value = '';
+                otpErr.textContent = 'A new code has been sent to your phone.';
+                otpErr.style.display = 'block';
+                otpErr.style.background = '#e8f5e9';
+                otpErr.style.borderColor = '#43a047';
+                otpErr.style.color = '#2e7d32';
+            } catch(err) {
+                otpErr.textContent = err.message || 'Could not resend. Please try again.';
+                otpErr.style.display = 'block';
+                otpErr.style.background = '#fff3f3';
+                otpErr.style.borderColor = '#e53935';
+                otpErr.style.color = '#c62828';
+            }
+            this.disabled = false;
+            this.textContent = "Didn't receive it? Resend code";
+        });
+
+        document.getElementById('contactBackBtn').addEventListener('click', function() {
+            document.getElementById('otpPanel').style.display = 'none';
+            document.getElementById('contactForm').style.display = 'block';
+        });
+
         document.getElementById('submitBtn').addEventListener('mouseover', function(){this.style.background='#0a5c5c';});
         document.getElementById('submitBtn').addEventListener('mouseout', function(){this.style.background='#0d8080';});
         </script>

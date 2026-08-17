@@ -203,6 +203,34 @@
                             </div>
                         </div>
 
+                        <!-- Step 1.5: OTP Verification -->
+                        <div id="checkout-step-otp" style="display:none;">
+                            <div class="checkout-section" style="text-align:center;">
+                                <div style="font-size:2.5rem;margin-bottom:1rem;">📱</div>
+                                <h3>Verify Your Phone Number</h3>
+                                <p>We sent a 6-digit code to <strong id="otp-phone-display"></strong>.<br>Enter it below to complete your order.</p>
+                                <div class="form-group" style="max-width:240px;margin:1.5rem auto;">
+                                    <label for="co-otp">Verification Code *</label>
+                                    <input type="text" id="co-otp" placeholder="000000" maxlength="6" inputmode="numeric" autocomplete="one-time-code"
+                                        style="text-align:center;font-size:1.6rem;letter-spacing:0.4rem;padding:12px;">
+                                </div>
+                                <div id="co-otp-status" class="co-status" style="display:none;"></div>
+                                <button id="verify-otp-btn" class="place-order-btn" style="max-width:320px;margin:0 auto;">
+                                    Verify &amp; Place Order &mdash; <span id="otp-order-total">$0.00</span>
+                                </button>
+                                <p style="margin-top:1rem;">
+                                    <button id="resend-otp-btn" style="background:none;border:none;color:var(--primary);cursor:pointer;text-decoration:underline;font-size:0.9rem;padding:0;">
+                                        Didn't receive it? Resend code
+                                    </button>
+                                </p>
+                                <p style="margin-top:0.4rem;">
+                                    <button id="back-to-form-btn" style="background:none;border:none;color:#888;cursor:pointer;font-size:0.9rem;padding:0;">
+                                        &larr; Back to form
+                                    </button>
+                                </p>
+                            </div>
+                        </div>
+
                         <!-- Step 2: Order Confirmed -->
                         <div id="checkout-step-success" style="display:none;">
                             <div class="checkout-section success-section">
@@ -449,6 +477,9 @@
             };
         }
 
+        var _otpToken = null;
+        var _pendingOrderData = null;
+
         async function placeOrder() {
             var statusEl = document.getElementById('co-status');
             var btn = document.getElementById('place-order-btn');
@@ -461,28 +492,97 @@
 
             hideStatus(statusEl);
             btn.disabled = true;
-            btn.textContent = 'Placing order...';
+            btn.textContent = 'Sending verification code...';
 
+            var phone = document.getElementById('co-phone').value.trim();
             try {
-                var res = await fetch('/api/order', {
+                var res = await fetch('/api/send-otp', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(buildOrderData())
+                    body: JSON.stringify({ phone: phone })
                 });
                 var data = await res.json();
-                if (!res.ok || !data.success) throw new Error(data.error || 'Failed to place order');
+                if (!res.ok || !data.token) throw new Error(data.error || 'Failed to send verification code');
 
-                clearCart();
-                showSuccessStep(data.ref);
+                _otpToken = data.token;
+                _pendingOrderData = buildOrderData();
+                showOtpStep(phone);
             } catch (err) {
-                showStatus(statusEl, err.message || 'Something went wrong. Please try again or email us at promedic.rx@gmail.com', 'error');
+                showStatus(statusEl, err.message || 'Could not send verification code. Please check your phone number.', 'error');
                 btn.disabled = false;
                 btn.innerHTML = 'Place Order &mdash; <span id="place-order-total">$' + (cartSubtotal(getCart()) + SHIPPING).toFixed(2) + '</span>';
             }
         }
 
-        function showSuccessStep(ref) {
+        function showOtpStep(phone) {
             document.getElementById('checkout-step-form').style.display = 'none';
+            document.getElementById('checkout-step-otp').style.display = 'block';
+            var phoneDisplay = document.getElementById('otp-phone-display');
+            if (phoneDisplay) phoneDisplay.textContent = phone;
+            var otpTotal = document.getElementById('otp-order-total');
+            if (otpTotal) otpTotal.textContent = '$' + (cartSubtotal(getCart()) + SHIPPING).toFixed(2);
+            document.getElementById('co-otp').value = '';
+            hideStatus(document.getElementById('co-otp-status'));
+        }
+
+        async function verifyAndPlaceOrder() {
+            var otpStatusEl = document.getElementById('co-otp-status');
+            var verifyBtn = document.getElementById('verify-otp-btn');
+            var otp = document.getElementById('co-otp').value.trim();
+
+            if (!otp || otp.length !== 6 || !/^\d{6}$/.test(otp)) {
+                showStatus(otpStatusEl, 'Please enter the 6-digit code sent to your phone.', 'error');
+                return;
+            }
+
+            hideStatus(otpStatusEl);
+            verifyBtn.disabled = true;
+            verifyBtn.textContent = 'Verifying...';
+
+            try {
+                var res = await fetch('/api/verify-otp', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ otp: otp, token: _otpToken, orderData: _pendingOrderData })
+                });
+                var data = await res.json();
+                if (!res.ok || !data.success) throw new Error(data.error || 'Verification failed');
+
+                clearCart();
+                showSuccessStep(data.ref);
+            } catch (err) {
+                showStatus(otpStatusEl, err.message || 'Something went wrong. Please try again.', 'error');
+                verifyBtn.disabled = false;
+                verifyBtn.innerHTML = 'Verify &amp; Place Order &mdash; <span id="otp-order-total">$' + (cartSubtotal(getCart()) + SHIPPING).toFixed(2) + '</span>';
+            }
+        }
+
+        async function resendOtp() {
+            var otpStatusEl = document.getElementById('co-otp-status');
+            var phone = _pendingOrderData ? _pendingOrderData.phone : document.getElementById('co-phone').value.trim();
+            var resendBtn = document.getElementById('resend-otp-btn');
+            resendBtn.disabled = true;
+            resendBtn.textContent = 'Sending...';
+            try {
+                var res = await fetch('/api/send-otp', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ phone: phone })
+                });
+                var data = await res.json();
+                if (!res.ok || !data.token) throw new Error(data.error || 'Failed to resend');
+                _otpToken = data.token;
+                document.getElementById('co-otp').value = '';
+                showStatus(otpStatusEl, 'A new code has been sent to your phone.', 'success');
+            } catch (err) {
+                showStatus(otpStatusEl, err.message || 'Could not resend code. Please try again.', 'error');
+            }
+            resendBtn.disabled = false;
+            resendBtn.textContent = "Didn't receive it? Resend code";
+        }
+
+        function showSuccessStep(ref) {
+            document.getElementById('checkout-step-otp').style.display = 'none';
             document.getElementById('checkout-step-success').style.display = 'block';
             var refEl = document.getElementById('confirm-ref');
             if (refEl) refEl.textContent = ref || '#' + Date.now();
@@ -507,6 +607,25 @@
 
         var placeBtn = document.getElementById('place-order-btn');
         if (placeBtn) placeBtn.addEventListener('click', placeOrder);
+
+        var verifyBtn = document.getElementById('verify-otp-btn');
+        if (verifyBtn) verifyBtn.addEventListener('click', verifyAndPlaceOrder);
+
+        var resendBtn = document.getElementById('resend-otp-btn');
+        if (resendBtn) resendBtn.addEventListener('click', resendOtp);
+
+        var backBtn = document.getElementById('back-to-form-btn');
+        if (backBtn) backBtn.addEventListener('click', function () {
+            document.getElementById('checkout-step-otp').style.display = 'none';
+            document.getElementById('checkout-step-form').style.display = 'block';
+            var btn = document.getElementById('place-order-btn');
+            btn.disabled = false;
+            btn.innerHTML = 'Place Order &mdash; <span id="place-order-total">$' + (cartSubtotal(getCart()) + SHIPPING).toFixed(2) + '</span>';
+        });
+
+        document.getElementById('co-otp').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') verifyAndPlaceOrder();
+        });
 
         // Hamburger toggle
         var hamburgerBtn = document.getElementById('hamburger');
